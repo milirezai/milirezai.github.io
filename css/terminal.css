@@ -1,0 +1,65 @@
+/* =====================================================================
+   TERMINAL.CSS — visual styling only, no content lives here.
+   Sections below:
+     1. Theme colors (dark/light) — CSS variables
+     2. Base layout (#screen, .line, links)
+     3. Boot / neofetch banner (.banner)
+     4. Prompt + input line
+     5. Command history + help table
+     6. Mobile responsiveness
+   Terminal TEXT (what commands print) lives in js/terminal.js, in the
+   `C` object near the top — edit there, not here.
+===================================================================== */
+
+  :root{
+    --bg:#0c0d0a; --text:#eae6da; --accent:#e8a33d; --muted:#847f6d; --err:#d97060;
+  }
+  body[data-theme="light"]{
+    --bg:#f3f1e9; --text:#232019; --accent:#a5661c; --muted:#7a7563; --err:#b1402d;
+  }
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:'JetBrains Mono', ui-monospace, monospace;
+    font-size:14.5px; line-height:1.65; -webkit-font-smoothing:antialiased;
+    transition:background .15s, color .15s;
+  }
+  ::selection{background:var(--accent); color:var(--bg);}
+
+  #screen{
+    max-width:820px; margin:0 auto; padding:26px 22px 120px;
+    min-height:100vh; cursor:text;
+  }
+  .line{white-space:pre-wrap; word-break:break-word; margin:0 0 2px;}
+  .dim{color:var(--muted);}
+  .accent{color:var(--accent);}
+  .err{color:var(--err);}
+  a{color:var(--accent);}
+  a:hover{text-decoration:none;}
+  strong{color:var(--accent); font-weight:700;}
+
+  .banner{margin-bottom:18px;}
+  .banner .row{display:flex; gap:10px;}
+  .banner .k{color:var(--muted); min-width:90px; flex:0 0 auto;}
+
+  .prompt-row{display:flex; align-items:center; gap:8px; margin-top:4px;}
+  .prompt-label{color:var(--accent); white-space:nowrap; flex:0 0 auto;}
+  #cmd-input{
+    flex:1 1 auto; background:transparent; border:none; outline:none;
+    color:var(--text); font-family:inherit; font-size:inherit; caret-color:var(--accent);
+    min-width:0;
+  }
+
+  .history-block{margin-bottom:2px;}
+  .history-cmd{display:flex; gap:8px;}
+  .history-cmd .p{color:var(--accent);}
+
+  .help-table{margin:4px 0 0;}
+  .help-table .row{display:flex; gap:14px;}
+  .help-table .c1{color:var(--accent); min-width:110px; flex:0 0 auto;}
+
+  @media (max-width:600px){
+    #screen{padding:18px 14px 100px; font-size:13.5px;}
+    .banner .k{min-width:70px;}
+  }
