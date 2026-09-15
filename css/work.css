@@ -1,0 +1,158 @@
+/* =====================================================================
+   WORK.CSS — shared styling for project detail pages
+   (work-ticketflow.html, work-milipay.html, work-milirulepilot.html).
+   Same design tokens/components as index.html's inline <style>, kept
+   in sync deliberately: colors, blobs, topnav, cards, bento, ticker-
+   style auto-scroll rows (used here for "Package stats").
+===================================================================== */
+:root{
+  --mono:'IBM Plex Mono', monospace; --sans:'IBM Plex Sans', sans-serif; --fa:'Vazirmatn', sans-serif;
+  --radius: 16px;
+}
+html[data-theme="light"]{
+  --bg:#f3f7fc; --bg2:#e7f0fa;
+  --blob-a:#bcdcff; --blob-b:#5aa4f0; --blob-c:#8fc4f5;
+  --card: rgba(255,255,255,0.66); --card-strong: rgba(255,255,255,0.9);
+  --border: rgba(10,35,64,0.10); --border-strong: rgba(10,35,64,0.18);
+  --shadow: 0 10px 28px rgba(20,50,90,0.08);
+  --text:#0a2340; --muted:rgba(10,35,64,0.6);
+  --accent:#1c6fe0; --accent-2:#1a56b3; --on-accent:#fff;
+  --input-bg: rgba(255,255,255,0.8);
+}
+html:not([data-theme="light"]){
+  --bg:#050608; --bg2:#03060a;
+  --blob-a:#6bacff; --blob-b:#2f8bff; --blob-c:#1a56b3;
+  --card: rgba(255,255,255,0.035); --card-strong: rgba(255,255,255,0.07);
+  --border: rgba(255,255,255,0.10); --border-strong: rgba(255,255,255,0.2);
+  --shadow: 0 10px 30px rgba(0,0,0,0.5);
+  --text:#eef4fb; --muted:rgba(238,244,251,0.6);
+  --accent:#2f8bff; --accent-2:#6bacff; --on-accent:#001428;
+  --input-bg: rgba(255,255,255,0.05);
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0; min-height:100%;}
+body{
+  background:linear-gradient(160deg, var(--bg) 0%, var(--bg2) 100%); background-attachment:fixed;
+  color:var(--text); font-family:var(--sans);
+  font-size:15.5px; line-height:1.7; -webkit-font-smoothing:antialiased;
+  position:relative; overflow-x:hidden; transition:background .4s ease,color .3s ease;
+}
+html[lang="fa"] body{font-family:var(--fa);}
+.mono{font-family:var(--mono);}
+a{color:inherit; text-decoration:none;}
+::selection{background:var(--accent); color:var(--on-accent);}
+
+/* ---------- floating blobs ---------- */
+.blob{position:fixed; border-radius:50%; filter:blur(90px); z-index:0; pointer-events:none;}
+.blob-1{width:360px; height:360px; background:var(--blob-a); opacity:.28; top:-120px; left:-100px; animation:float-1 16s ease-in-out infinite;}
+.blob-2{width:320px; height:320px; background:var(--blob-b); opacity:.22; bottom:-130px; right:-90px; animation:float-2 20s ease-in-out infinite;}
+.blob-3{width:240px; height:240px; background:var(--blob-c); opacity:.18; top:42%; right:4%; animation:float-3 14s ease-in-out infinite;}
+@keyframes float-1{0%,100%{transform:translate(0,0);}50%{transform:translate(40px,30px);}}
+@keyframes float-2{0%,100%{transform:translate(0,0);}50%{transform:translate(-35px,-25px);}}
+@keyframes float-3{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-20px,25px) scale(1.08);}}
+@media (prefers-reduced-motion:reduce){.blob-1,.blob-2,.blob-3{animation:none;}}
+
+/* ---------- shared surfaces ---------- */
+.card{
+  background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+}
+.card.hoverable{transition:transform .25s ease, border-color .25s ease;}
+.card.hoverable:hover{transform:translateY(-3px); border-color:var(--accent);}
+@media (prefers-reduced-motion:reduce){.card.hoverable{transition:none;} .card.hoverable:hover{transform:none;}}
+
+.shell{position:relative; z-index:2; max-width:720px; margin:0 auto; padding:14px 16px 50px;}
+
+/* ---------- floating nav (no site brand, per site-wide preference) ---------- */
+.topnav{
+  position:sticky; top:12px; z-index:50; display:flex; align-items:center; justify-content:space-between;
+  gap:8px; padding:9px 10px; border-radius:100px; margin-bottom:30px;
+  background:var(--card-strong); border:1px solid var(--border);
+  -webkit-backdrop-filter:blur(18px) saturate(160%); backdrop-filter:blur(18px) saturate(160%);
+  box-shadow:var(--shadow);
+}
+.back-link{
+  display:inline-flex; align-items:center; gap:7px; font-size:12.5px; font-weight:600;
+  padding:7px 14px 7px 10px; border-radius:100px; flex:0 0 auto;
+}
+html[dir="rtl"] .back-link{padding:7px 10px 7px 14px;}
+.back-link .icon{width:15px; height:15px;}
+.back-link:hover{color:var(--accent);}
+.topnav-controls{display:flex; align-items:center; gap:6px; flex:0 0 auto;}
+.lang-toggle{display:flex; border-radius:100px; overflow:hidden; border:1px solid var(--border);}
+.lang-toggle button{background:transparent; border:none; color:var(--text); font-family:var(--mono); font-size:11px; padding:6px 10px; cursor:pointer; opacity:.6;}
+.lang-toggle button.active{background:var(--card); opacity:1;}
+.icon-btn{display:flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:50%; border:1px solid var(--border); background:transparent; color:var(--text); cursor:pointer;}
+.icon-btn:hover{background:var(--card);}
+.icon-btn .icon{width:15px; height:15px;}
+
+/* ---------- package hero ---------- */
+.pkg-hero{padding:14px 4px 8px;}
+.badge{
+  display:inline-flex; align-items:center; gap:8px; font-size:12px; font-family:var(--mono);
+  padding:7px 14px; border-radius:100px; margin-bottom:18px;
+  background:var(--card); border:1px solid var(--border);
+}
+.dot{width:6px; height:6px; border-radius:50%; display:inline-block; flex:0 0 auto; animation:pulse 2s infinite;}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(47,139,255,.5);}70%{box-shadow:0 0 0 7px rgba(47,139,255,0);}100%{box-shadow:0 0 0 0 rgba(47,139,255,0);}}
+.pkg-hero h1{font-size:32px; line-height:1.15; font-weight:800; letter-spacing:-0.01em; margin:0 0 12px;}
+.pkg-tagline{color:var(--muted); font-size:14.5px; max-width:58ch; margin:0 0 22px;}
+.btn-row{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:8px;}
+.btn{padding:12px 20px; border-radius:12px; font-size:13.5px; font-weight:600; border:1px solid var(--border); transition:transform .2s ease, filter .2s ease; display:inline-flex; align-items:center; gap:8px;}
+.btn:active{transform:scale(.96);}
+.btn.primary{background:var(--accent); color:var(--on-accent); border-color:transparent;}
+.btn.ghost{background:var(--card); color:var(--text);}
+.btn.ghost:hover, .btn.primary:hover{filter:brightness(1.08);}
+.btn .icon{width:15px; height:15px;}
+
+/* ---------- section framing ---------- */
+section{padding:34px 0 6px;}
+.section-tag{font-size:11px; color:var(--muted); margin:0 0 14px; letter-spacing:.05em;}
+h2{font-size:20px; margin:0 0 4px; font-weight:700;}
+
+.reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
+.reveal.in{opacity:1; transform:translateY(0);}
+@keyframes fade-up{from{opacity:0; transform:translateY(16px);}to{opacity:1; transform:translateY(0);}}
+.pkg-hero .badge{animation:fade-up .6s ease both;}
+.pkg-hero h1{animation:fade-up .6s ease .08s both;}
+.pkg-hero .pkg-tagline{animation:fade-up .6s ease .16s both;}
+.pkg-hero .btn-row{animation:fade-up .6s ease .24s both;}
+@media (prefers-reduced-motion:reduce){
+  .pkg-hero .badge, .pkg-hero h1, .pkg-hero .pkg-tagline, .pkg-hero .btn-row{animation:none;}
+  .reveal{opacity:1; transform:none; transition:none;}
+}
+
+.prose p{color:var(--muted); font-size:14.5px; margin:0 0 13px;}
+.prose p:last-child{margin-bottom:0;}
+.prose-card{padding:20px 22px;}
+
+/* ---------- feature list ---------- */
+.feature-list{display:flex; flex-direction:column; gap:10px; margin-top:14px;}
+.feature{padding:16px 18px; display:flex; gap:13px; align-items:flex-start;}
+.feature .icon{width:18px; height:18px; color:var(--accent); flex:0 0 auto; margin-top:2px;}
+.feature h3{font-size:13.5px; font-weight:600; margin:0 0 4px;}
+.feature p{color:var(--muted); font-size:13px; margin:0;}
+
+/* ---------- pills / tags ---------- */
+.pill-row{display:flex; gap:7px; flex-wrap:wrap; margin-top:14px;}
+.pill{font-family:var(--mono); font-size:11.5px; padding:5px 11px; border-radius:100px; background:var(--card-strong); border:1px solid var(--border);}
+
+/* ---------- auto-moving + drag-scrollable row (package stats) ---------- */
+.autoscroll-row{
+  display:flex; gap:10px; overflow-x:auto; cursor:grab; user-select:none; touch-action:pan-y;
+  -webkit-overflow-scrolling:touch; scrollbar-width:none; padding:2px; margin-top:14px;
+  -webkit-mask-image:linear-gradient(to right, transparent, #000 20px, #000 calc(100% - 20px), transparent);
+  mask-image:linear-gradient(to right, transparent, #000 20px, #000 calc(100% - 20px), transparent);
+}
+.autoscroll-row::-webkit-scrollbar{display:none;}
+.autoscroll-row.dragging{cursor:grabbing;}
+.autoscroll-row .tile{flex:0 0 auto; min-width:130px; padding:18px;}
+.tile .num{font-size:24px; font-weight:800; color:var(--accent); display:block; margin-bottom:3px;}
+.tile .label{font-size:11.5px; color:var(--muted);}
+.tile .tile-icon{width:18px; height:18px; color:var(--accent); margin-bottom:9px;}
+.scroll-hint{font-size:11px; color:var(--muted); margin:8px 2px 0; display:flex; align-items:center; gap:5px;}
+.scroll-hint .icon{width:12px; height:12px;}
+.gh-note{font-size:11.5px; color:var(--muted); margin-top:12px;}
+
+footer{text-align:center; font-size:11.5px; color:var(--muted); padding:26px 0 6px;}

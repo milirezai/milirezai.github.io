@@ -14,7 +14,7 @@ const output = document.getElementById('output');
 const input = document.getElementById('cmd-input');
 const promptLabel = document.getElementById('prompt-label');
 
-let theme = 'dark';
+let theme = document.documentElement.getAttribute('data-theme') || 'dark';
 let historyStack = [];
 let historyIndex = -1;
 
@@ -36,7 +36,7 @@ function printLine(html, cls){
 function printBlank(){ printLine('&nbsp;'); }
 
 function scrollToBottom(){
-  window.scrollTo(0, document.body.scrollHeight);
+  screen.scrollTop = screen.scrollHeight;
 }
 
 // =====================================================================
@@ -295,9 +295,19 @@ async function printGithub(){
 function setTheme(next){
   if(next !== 'dark' && next !== 'light'){ printLine(C.themeUsage, 'err'); return; }
   theme = next;
-  document.body.setAttribute('data-theme', theme);
+  document.documentElement.setAttribute('data-theme', theme);
+  try{ localStorage.setItem('theme', theme); }catch(e){}
   printLine(C.themeSet(theme));
 }
+
+// ---------------------- titlebar theme toggle button ----------------------
+(function(){
+  const btn = document.getElementById('term-theme-toggle');
+  if(!btn) return;
+  btn.addEventListener('click', function(){
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  });
+})();
 
 function handleResume(){
   printLine(C.resumeFetching, 'dim');

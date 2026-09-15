@@ -4,73 +4,132 @@
 <script>(function(){try{var t=localStorage.getItem('theme');if(t){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MiliRulePilot — Milad Rezai</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23101014'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='30' font-weight='700' fill='%23cf9d4f' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
+<title>MiliRulePilot · Milad Rezai</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23081a2e'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='30' font-weight='700' fill='%232f8bff' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/work-milirulepilot.css">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700;800&family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/work.css">
 </head>
 <body>
-<div class="topbar">
-  <a class="back mono" href="index.html"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M11 6l-6 6 6 6"/></svg><span data-en="Back to portfolio" data-fa="بازگشت به پورتفولیو">Back to portfolio</span></a>
-  <div class="toggle-row">
-    <div class="lang-toggle">
-      <button id="btn-en" class="active">EN</button>
-      <button id="btn-fa">FA</button>
-    </div>
-    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">
-      <svg id="icon-moon" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-      <svg id="icon-sun" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12h2.5M19 12h2.5M4.2 19.8L6 18M18 6l1.8-1.8"/></svg>
-    </button>
-    <a href="terminal.html" class="theme-toggle" id="terminal-link" title="Open terminal mode" aria-label="Open terminal mode">
-      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M6.5 9.5l3 2.5-3 2.5"/><path d="M12 15h5"/></svg>
+
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+
+<div class="shell">
+
+  <nav class="topnav">
+    <a href="index.html" class="back-link">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M11 6l-6 6 6 6"/></svg>
+      <span data-en="Back to portfolio" data-fa="بازگشت به صفحه اصلی">Back to portfolio</span>
     </a>
-  </div>
-</div>
-
-<div class="wrap">
-  <p class="kicker mono" data-en="OPEN-SOURCE · EARLY STAGE" data-fa="متن‌باز · مرحله اولیه">OPEN-SOURCE · EARLY STAGE</p>
-  <h1>MiliRulePilot</h1>
-  <p class="lead" data-en="A Laravel business rule and decision engine — lets an app define conditional business logic as data instead of scattering if-statements through the codebase." data-fa="یه موتور قوانین و تصمیم‌گیری کسب‌وکار برای لاراول — به یه اپلیکیشن اجازه می‌ده منطق شرطی کسب‌وکار رو به‌صورت داده تعریف کنه، به‌جای پخش‌کردن if-statement‌ها توی کدبیس.">A Laravel business rule and decision engine — lets an app define conditional business logic as data instead of scattering if-statements through the codebase.</p>
-
-  <span class="status"><span class="pulse"></span><span data-en="Active development" data-fa="در حال توسعه فعال">Active development</span></span>
-
-
-  <section class="package-stats-section">
-    <h2 data-en="Package stats" data-fa="آمار پکیج">Package stats</h2>
-    <div class="package-stats" id="package-stats">
-      <div class="package-stat"><span class="n mono" id="pkg-stars">17</span><span class="l" data-en="GitHub stars" data-fa="استار گیت‌هاب">GitHub stars</span></div>
-      <div class="package-stat"><span class="n mono" id="pkg-installs">4</span><span class="l" data-en="Packagist installs" data-fa="نصب از Packagist">Packagist installs</span></div>
-      <div class="package-stat"><span class="n mono" id="pkg-contributors">–</span><span class="l" data-en="Contributors" data-fa="کانتریبیوترها">Contributors</span></div>
-      <div class="package-stat"><span class="n mono" id="pkg-forks">0</span><span class="l" data-en="Forks" data-fa="فورک‌ها">Forks</span></div>
-      <div class="package-stat"><span class="n mono" id="pkg-php">&gt;= 8.2</span><span class="l" data-en="PHP" data-fa="PHP">PHP</span></div>
-      <div class="package-stat"><span class="n mono" id="pkg-version">v1.2.0</span><span class="l" data-en="Latest version" data-fa="آخرین نسخه">Latest version</span></div>
-      <div class="package-stat package-stat-wide"><span class="n mono" id="pkg-laravel">12.x · 13.x</span><span class="l" data-en="Supported Laravel versions" data-fa="نسخه‌های پشتیبانی‌شده لاراول">Supported Laravel versions</span></div>
-      <div class="package-stat"><span class="n mono" id="pkg-issues">0</span><span class="l" data-en="Open issues" data-fa="ایشوهای باز">Open issues</span></div>
+    <div class="topnav-controls">
+      <div class="lang-toggle">
+        <button class="active lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fa">FA</button>
+      </div>
+      <button class="icon-btn theme-toggle-btn" type="button" aria-label="Toggle theme">
+        <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12h2.5M19 12h2.5M4.2 19.8L6 18M18 6l1.8-1.8"/></svg>
+      </button>
     </div>
-    <p class="package-stats-note mono" data-en="Live values are fetched from GitHub and Packagist when the page loads." data-fa="مقادیر به‌صورت زنده هنگام باز شدن صفحه از GitHub و Packagist دریافت می‌شن.">Live values are fetched from GitHub and Packagist when the page loads.</p>
+  </nav>
+
+  <!-- HERO -->
+  <section class="pkg-hero">
+    <span class="badge"><span class="dot" style="background:var(--accent-2)"></span><span data-en="Early stage · in development" data-fa="مرحله اولیه · در حال توسعه">Early stage · in development</span></span>
+    <h1>MiliRulePilot</h1>
+    <p class="pkg-tagline" data-en="An early-stage Laravel business rule and decision engine package, with AND/OR condition grouping and comparison operators in active development." data-fa="یه پکیج لاراول در مراحل اولیه برای موتور قوانین و تصمیم‌گیری کسب‌وکار، با گروه‌بندی شرط‌های AND/OR و عملگرهای مقایسه که در حال توسعه‌ست.">An early-stage Laravel business rule and decision engine package, with AND/OR condition grouping and comparison operators in active development.</p>
+    <div class="btn-row">
+      <a class="btn primary" href="https://github.com/milirezai/milirulepilot" target="_blank" rel="noopener">
+        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        <span data-en="View on GitHub" data-fa="مشاهده در گیت‌هاب">View on GitHub</span>
+      </a>
+            <a class="btn ghost" href="https://packagist.org/packages/milirezai/milirulepilot" target="_blank" rel="noopener">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>
+        <span data-en="View on Packagist" data-fa="مشاهده در Packagist">View on Packagist</span>
+      </a>
+
+    </div>
   </section>
 
-  <div class="tags"><span>Laravel</span><span data-en="Rule engine" data-fa="Rule engine">Rule engine</span><span data-en="Decision logic" data-fa="Decision logic">Decision logic</span></div>
-  <a class="btn" href="https://github.com/milirezai/milirulepilot" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg><span data-en="View repository" data-fa="مشاهده ریپازیتوری">View repository</span></a>
-
-  <section>
-    <h2 data-en="What it's for" data-fa="برای چیه">What it's for</h2>
-    <p style="font-size:14.5px; color:var(--muted);" data-en="As an app grows, business rules tend to multiply and tangle — different discounts for VIP users, feature access by permission level, pricing that shifts with conditions. MiliRulePilot centralizes that logic into reusable, composable rule definitions instead of nested conditionals." data-fa="با رشد یه اپلیکیشن، قوانین کسب‌وکار معمولاً زیاد و پیچیده می‌شن — تخفیف‌های متفاوت برای کاربران VIP، دسترسی به امکانات بر اساس سطح مجوز، قیمتی که با شرایط مختلف تغییر می‌کنه. MiliRulePilot این منطق رو در تعریف‌های قانون قابل‌استفاده‌مجدد و ترکیب‌پذیر متمرکز می‌کنه، به‌جای شرط‌های تودرتو.">As an app grows, business rules tend to multiply and tangle — different discounts for VIP users, feature access by permission level, pricing that shifts with conditions. MiliRulePilot centralizes that logic into reusable, composable rule definitions instead of nested conditionals.</p>
+  <!-- OVERVIEW -->
+  <section class="reveal">
+    <p class="section-tag mono">01</p>
+    <h2 data-en="Overview" data-fa="نمای کلی">Overview</h2>
+    <div class="prose-card card">
+      <div class="prose">
+        <p data-en="MiliRulePilot is a business rule and decision engine for Laravel — a way to express conditional logic (&ldquo;if X and Y, then Z&rdquo;) as data instead of scattering it through if/else chains in application code." data-fa="MiliRulePilot یه موتور قوانین و تصمیم‌گیری کسب‌وکار برای لاراوله — راهی برای بیان منطق شرطی (&ldquo;اگه X و Y، پس Z&rdquo;) به‌صورت داده به‌جای پخش‌کردنش توی زنجیره‌های if/else در کد اپلیکیشن.">MiliRulePilot is a business rule and decision engine for Laravel — a way to express conditional logic (&ldquo;if X and Y, then Z&rdquo;) as data instead of scattering it through if/else chains in application code.</p>
+        <p data-en="It's still early: the core evaluation engine works, and I'm actively expanding it with AND/OR condition grouping and a wider set of comparison operators." data-fa="هنوز در مراحل اولیه‌ست: موتور ارزیابی اصلی کار می‌کنه، و من دارم فعالانه با گروه‌بندی شرط‌های AND/OR و مجموعه گسترده‌تری از عملگرهای مقایسه توسعه‌ش می‌دم.">It's still early: the core evaluation engine works, and I'm actively expanding it with AND/OR condition grouping and a wider set of comparison operators.</p>
+      </div>
+    </div>
   </section>
 
-  <section>
-    <h2 data-en="Roadmap" data-fa="نقشه راه">Roadmap</h2>
-    <ul>
-      <li data-en="Fixing a naming typo in the core evaluation method." data-fa="اصلاح یه تایپوی نام‌گذاری در متد اصلی ارزیابی.">Fixing a naming typo in the core evaluation method.</li>
-      <li data-en="Adding AND/OR condition grouping, so rules can express compound logic rather than a single flat condition." data-fa="افزودن گروه‌بندی شرط AND/OR، تا قوانین بتونن منطق ترکیبی رو به‌جای یه شرط تخت واحد بیان کنن.">Adding AND/OR condition grouping, so rules can express compound logic rather than a single flat condition.</li>
-      <li data-en="Expanding the set of comparison operators available when building a condition." data-fa="گسترش مجموعه عملگرهای مقایسه در دسترس هنگام ساخت یه شرط.">Expanding the set of comparison operators available when building a condition.</li>
-    </ul>
+  <!-- FEATURES / ROADMAP -->
+  <section class="reveal">
+    <p class="section-tag mono">02</p>
+    <h2 data-en="In progress" data-fa="در حال انجام">In progress</h2>
+    <div class="feature-list">
+      <div class="feature card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6L2 12l6 6"/><path d="M16 6l6 6-6 6"/></svg>
+        <div>
+          <h3 data-en="AND/OR condition grouping" data-fa="گروه‌بندی شرط‌های AND/OR">AND/OR condition grouping</h3>
+          <p data-en="Letting rules nest conditions instead of a single flat list — matching how real business logic actually branches." data-fa="اجازه‌دادن به قوانین برای تودرتو کردن شرط‌ها به‌جای یه لیست تخت واحد — منطبق با نحوه واقعی شاخه‌شدن منطق کسب‌وکار.">Letting rules nest conditions instead of a single flat list — matching how real business logic actually branches.</p>
+        </div>
+      </div>
+      <div class="feature card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4" cy="6" r="1.5"/><circle cx="4" cy="12" r="1.5"/><circle cx="4" cy="18" r="1.5"/></svg>
+        <div>
+          <h3 data-en="Wider comparison operators" data-fa="عملگرهای مقایسه گسترده‌تر">Wider comparison operators</h3>
+          <p data-en="Expanding beyond basic equality checks toward ranges, set membership, and pattern matching." data-fa="گسترش فراتر از بررسی‌های ساده برابری به سمت بازه‌ها، عضویت در مجموعه، و تطبیق الگو.">Expanding beyond basic equality checks toward ranges, set membership, and pattern matching.</p>
+        </div>
+      </div>
+      <div class="feature card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-2"/><path d="M9 15L20 4"/><path d="M15 4h5v5"/></svg>
+        <div>
+          <h3 data-en="Naming cleanup" data-fa="اصلاح نام‌گذاری">Naming cleanup</h3>
+          <p data-en="Fixing a method-name typo in the core evaluation path before the API is considered stable." data-fa="اصلاح یه تایپوی نام متد توی مسیر ارزیابی اصلی، قبل از اینکه ای‌پی‌آی پایدار در نظر گرفته بشه.">Fixing a method-name typo in the core evaluation path before the API is considered stable.</p>
+        </div>
+      </div>
+    </div>
+    <div class="pill-row">
+      <span class="pill">Laravel</span><span class="pill">PHP</span><span class="pill" data-en="Early stage" data-fa="مرحله اولیه">Early stage</span>
+    </div>
   </section>
+
+  <!-- PACKAGE STATS -->
+  <section class="reveal">
+    <p class="section-tag mono">03</p>
+    <h2 data-en="Package stats" data-fa="آمار پکیج">Package stats</h2>
+    <div class="autoscroll-row" id="pkg-stats-row">
+      <div class="tile card" style="text-align:center; width: 150px;margin-left: 10px;">
+        <svg class="tile-icon" style="margin:0 auto 8px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17.3l-6.2 3.6 1.6-7L2 9.2l7.1-.6L12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7z"/></svg>
+        <span class="num mono" data-field="stars" style="font-size:19px;">–</span><span class="label" data-en="stars" data-fa="استار">stars</span>
+      </div>
+      <div class="tile card" style="text-align:center;width: 150px;">
+        <svg class="tile-icon" style="margin:0 auto 8px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.4"/><circle cx="18" cy="6" r="2.4"/><circle cx="6" cy="18" r="2.4"/><path d="M6 8.4V15a3 3 0 0 0 3 3h6.5"/><path d="M18 8.4v2.6"/></svg>
+        <span class="num mono" data-field="forks" style="font-size:19px;">–</span><span class="label" data-en="forks" data-fa="فورک">forks</span>
+      </div>
+      <div class="tile card" style="text-align:center;width: 150px;">
+        <svg class="tile-icon" style="margin:0 auto 8px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
+        <span class="num mono" data-field="issues" style="font-size:19px;">–</span><span class="label" data-en="open issues" data-fa="ایشوی باز">open issues</span>
+      </div>
+      <div class="tile card" style="text-align:center; width: 150px; ">
+        <svg class="tile-icon" style="margin:0 auto 8px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 9.5h18"/><path d="M8 3v3M16 3v3"/></svg>
+        <span class="num mono" data-field="updated" style="font-size:15px;">–</span><span class="label" data-en="last updated" data-fa="آخرین آپدیت">last updated</span>
+      </div>
+    </div>
+    <p class="scroll-hint mono">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/><path d="M11 18l-6-6 6-6"/></svg>
+      <span data-en="Drag to see more" data-fa="برای دیدن بیشتر بکش">Drag to see more</span>
+    </p>
+    <p class="gh-note" id="pkg-stats-note" data-en="Pulled live from the GitHub API." data-fa="به‌صورت زنده از GitHub API خونده می‌شه.">Pulled live from the GitHub API.</p>
+  </section>
+
+  <footer>© <span id="year"></span> Milad Rezai — <a href="index.html" data-en="back to portfolio" data-fa="بازگشت به صفحه اصلی">back to portfolio</a></footer>
 </div>
 
-
-
-<script src="js/work-milirulepilot.js"></script>
+<script src="js/work.js"></script>
+<script>initPackageStats('milirulepilot');</script>
 </body>
 </html>

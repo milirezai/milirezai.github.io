@@ -5,241 +5,735 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Milad Rezai · Backend Developer</title>
-<meta name="description" content="Milad Rezai — Backend Developer building open-source Laravel packages.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23101014'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='30' font-weight='700' fill='%23cf9d4f' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23081a2e'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='30' font-weight='700' fill='%232f8bff' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/index.css">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700;800&family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* =====================================================================
+   MODERN EDITORIAL / BENTO THEME
+   Flatter surfaces, bold type, bento grids, ticker, scroll reveals.
+   Same two variants as before, applied via html[data-theme]:
+     dark  (default) = "Pure Black Blue"
+     light            = "Sky Blue"
+===================================================================== */
+:root{
+  --mono:'IBM Plex Mono', monospace; --sans:'IBM Plex Sans', sans-serif; --fa:'Vazirmatn', sans-serif;
+  --radius: 16px;
+}
+html[data-theme="light"]{
+  --bg:#f3f7fc; --bg2:#e7f0fa;
+  --blob-a:#bcdcff; --blob-b:#5aa4f0; --blob-c:#8fc4f5;
+  --card: rgba(255,255,255,0.66); --card-strong: rgba(255,255,255,0.9);
+  --border: rgba(10,35,64,0.10); --border-strong: rgba(10,35,64,0.18);
+  --shadow: 0 10px 28px rgba(20,50,90,0.08);
+  --text:#0a2340; --muted:rgba(10,35,64,0.6);
+  --accent:#1c6fe0; --accent-2:#1a56b3; --on-accent:#fff;
+  --input-bg: rgba(255,255,255,0.8);
+}
+html:not([data-theme="light"]){
+  --bg:#050608; --bg2:#03060a;
+  --blob-a:#6bacff; --blob-b:#2f8bff; --blob-c:#1a56b3;
+  --card: rgba(255,255,255,0.035); --card-strong: rgba(255,255,255,0.07);
+  --border: rgba(255,255,255,0.10); --border-strong: rgba(255,255,255,0.2);
+  --shadow: 0 10px 30px rgba(0,0,0,0.5);
+  --text:#eef4fb; --muted:rgba(238,244,251,0.6);
+  --accent:#2f8bff; --accent-2:#6bacff; --on-accent:#001428;
+  --input-bg: rgba(255,255,255,0.05);
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0; min-height:100%;}
+body{
+  background:linear-gradient(160deg, var(--bg) 0%, var(--bg2) 100%); background-attachment:fixed;
+  color:var(--text); font-family:var(--sans);
+  font-size:15.5px; line-height:1.7; -webkit-font-smoothing:antialiased;
+  position:relative; overflow-x:hidden; transition:background .4s ease,color .3s ease;
+}
+html[lang="fa"] body{font-family:var(--fa);}
+.mono{font-family:var(--mono);}
+a{color:inherit; text-decoration:none;}
+::selection{background:var(--accent); color:var(--on-accent);}
+
+/* ---------- floating blobs ---------- */
+.blob{position:fixed; border-radius:50%; filter:blur(90px); z-index:0; pointer-events:none;}
+.blob-1{width:360px; height:360px; background:var(--blob-a); opacity:.28; top:-120px; left:-100px; animation:float-1 16s ease-in-out infinite;}
+.blob-2{width:320px; height:320px; background:var(--blob-b); opacity:.22; bottom:-130px; right:-90px; animation:float-2 20s ease-in-out infinite;}
+.blob-3{width:240px; height:240px; background:var(--blob-c); opacity:.18; top:42%; right:4%; animation:float-3 14s ease-in-out infinite;}
+@keyframes float-1{0%,100%{transform:translate(0,0);}50%{transform:translate(40px,30px);}}
+@keyframes float-2{0%,100%{transform:translate(0,0);}50%{transform:translate(-35px,-25px);}}
+@keyframes float-3{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-20px,25px) scale(1.08);}}
+@media (prefers-reduced-motion:reduce){.blob-1,.blob-2,.blob-3{animation:none;}}
+
+/* ---------- shared surfaces ---------- */
+.card{
+  background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+  -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+}
+.card.hoverable{transition:transform .25s ease, border-color .25s ease;}
+.card.hoverable:hover{transform:translateY(-3px); border-color:var(--accent);}
+@media (prefers-reduced-motion:reduce){.card.hoverable{transition:none;} .card.hoverable:hover{transform:none;}}
+
+.shell{position:relative; z-index:2; max-width:720px; margin:0 auto; padding:14px 16px 50px;}
+
+/* ---------- floating nav ---------- */
+.topnav{
+  position:sticky; top:12px; z-index:50; display:flex; align-items:center; justify-content:space-between;
+  gap:8px; padding:9px 10px 9px 16px; border-radius:100px; margin-bottom:30px;
+  background:var(--card-strong); border:1px solid var(--border);
+  -webkit-backdrop-filter:blur(18px) saturate(160%); backdrop-filter:blur(18px) saturate(160%);
+  box-shadow:var(--shadow);
+}
+html[dir="rtl"] .topnav{padding:9px 16px 9px 10px;}
+.topnav-links{display:flex; gap:2px; overflow-x:auto; scrollbar-width:none; flex:1; padding:0 6px;}
+.dot{width:6px; height:6px; border-radius:50%; display:inline-block; flex:0 0 auto; animation:pulse 2s infinite;}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(47,139,255,.5);}70%{box-shadow:0 0 0 7px rgba(47,139,255,0);}100%{box-shadow:0 0 0 0 rgba(47,139,255,0);}}
+.topnav-links::-webkit-scrollbar{display:none;}
+.topnav-links a{
+  display:flex; align-items:center; justify-content:center; width:34px; height:34px; border-radius:50%;
+  flex:0 0 auto; color:var(--text); opacity:.62; transition:background .2s,opacity .2s;
+}
+.topnav-links a:hover{background:var(--card); opacity:1;}
+.topnav-links .icon{width:16px; height:16px;}
+.topnav-controls{display:flex; align-items:center; gap:6px; flex:0 0 auto;}
+.lang-toggle{display:flex; border-radius:100px; overflow:hidden; border:1px solid var(--border);}
+.lang-toggle button{background:transparent; border:none; color:var(--text); font-family:var(--mono); font-size:11px; padding:6px 10px; cursor:pointer; opacity:.6;}
+.lang-toggle button.active{background:var(--card); opacity:1;}
+.icon-btn{display:flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:50%; border:1px solid var(--border); background:transparent; color:var(--text); cursor:pointer;}
+.icon-btn:hover{background:var(--card);}
+.icon-btn .icon{width:15px; height:15px;}
+
+/* ---------- hero ---------- */
+.hero{padding:14px 4px 8px;}
+.eyebrow{font-size:11.5px; color:var(--accent); letter-spacing:.06em; margin:0 0 14px; display:block;}
+.badge{
+  display:inline-flex; align-items:center; gap:8px; font-size:12px; font-family:var(--mono);
+  padding:7px 14px; border-radius:100px; margin-bottom:20px;
+  background:var(--card); border:1px solid var(--border);
+}
+.hero h1{font-size:38px; line-height:1.12; font-weight:800; letter-spacing:-0.01em; margin:0 0 16px;}
+.hero h1 .accent-word{color:var(--accent);}
+.lead{color:var(--muted); font-size:15px; max-width:56ch; margin:0 0 26px;}
+.btn-row{display:flex; gap:10px; flex-wrap:wrap;}
+.btn{padding:12px 20px; border-radius:12px; font-size:13.5px; font-weight:600; border:1px solid var(--border); transition:transform .2s ease, filter .2s ease;}
+.btn:active{transform:scale(.96);}
+.btn.primary{background:var(--accent); color:var(--on-accent); border-color:transparent;}
+.btn.ghost{background:var(--card); color:var(--text);}
+.btn.ghost:hover, .btn.primary:hover{filter:brightness(1.08);}
+
+/* ---------- hero secondary links (resume / github) ---------- */
+.hero-links{display:flex; gap:9px; flex-wrap:wrap; margin-top:12px;}
+.hero-link{
+  display:inline-flex; align-items:center; gap:7px; font-size:12.5px; font-family:var(--mono);
+  color:var(--muted); padding:8px 14px 8px 12px; border-radius:100px; border:1px solid var(--border);
+  background:var(--card); transition:color .2s ease, border-color .2s ease, transform .2s ease;
+}
+html[dir="rtl"] .hero-link{padding:8px 12px 8px 14px;}
+.hero-link .icon{width:14px; height:14px; flex:0 0 auto;}
+.hero-link:hover{color:var(--accent); border-color:var(--accent); transform:translateY(-1px);}
+
+/* ---------- ticker (auto-scroll + drag, same feel as github activity) ---------- */
+.ticker-wrap{margin:26px 0 6px; overflow:hidden; border-radius:14px; padding:13px 0; border:1px solid var(--border); background:var(--card);}
+.ticker{
+  display:flex; gap:26px; overflow-x:auto; cursor:grab; user-select:none; touch-action:pan-y;
+  -webkit-overflow-scrolling:touch; scrollbar-width:none; padding:0 16px;
+  -webkit-mask-image:linear-gradient(to right, transparent, #000 24px, #000 calc(100% - 24px), transparent);
+  mask-image:linear-gradient(to right, transparent, #000 24px, #000 calc(100% - 24px), transparent);
+}
+.ticker::-webkit-scrollbar{display:none;}
+.ticker.dragging{cursor:grabbing;}
+.ticker span{font-family:var(--mono); font-size:12px; color:var(--muted); white-space:nowrap; flex:0 0 auto; margin-left: 17px;}
+.ticker span b{color:var(--accent); font-weight:500;}
+
+/* ---------- section framing ---------- */
+section{padding:38px 0 6px;}
+.section-tag{font-size:11px; color:var(--muted); margin:0 0 14px; letter-spacing:.05em;}
+h2{font-size:21px; margin:0 0 4px; font-weight:700;}
+
+.reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
+.reveal.in{opacity:1; transform:translateY(0);}
+@keyframes fade-up{from{opacity:0; transform:translateY(16px);}to{opacity:1; transform:translateY(0);}}
+.hero .badge{animation:fade-up .6s ease both;}
+.hero h1{animation:fade-up .6s ease .08s both;}
+.hero .lead{animation:fade-up .6s ease .16s both;}
+.hero .btn-row{animation:fade-up .6s ease .24s both;}
+@media (prefers-reduced-motion:reduce){
+  .hero .badge, .hero h1, .hero .lead, .hero .btn-row{animation:none;}
+  .reveal{opacity:1; transform:none; transition:none;}
+}
+
+/* ---------- bento grid (about + github) ---------- */
+.bento{display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:14px;}
+.tile{padding:18px; }
+.tile.wide{grid-column:span 2;}
+.tile .num{font-size:26px; font-weight:800; color:var(--accent); display:block; margin-bottom:3px;}
+.tile .label{font-size:11.5px; color:var(--muted);}
+.tile.wide p{color:var(--muted); font-size:13.5px; margin:0;}
+.tile .tile-icon{width:18px; height:18px; color:var(--accent); margin-bottom:10px;}
+
+/* ---------- about: modern stat cards ---------- */
+.stat-row{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:10px;}
+.stat-card{padding:18px 12px 16px; display:flex; flex-direction:column; align-items:center; text-align:center; gap:9px;}
+.stat-card .icon{width:20px; height:20px; color:var(--accent);}
+.stat-num{font-size:19px; font-weight:800; color:var(--text); line-height:1.1;}
+.stat-label{font-size:11px; color:var(--muted);}
+@media (max-width:380px){ .stat-card{padding:14px 6px;} }
+
+/* ---------- skills ---------- */
+.skill-groups{display:flex; flex-direction:column; gap:10px; margin-top:14px;}
+.skill-group{padding:16px 18px;}
+.skill-group h3{display:flex; align-items:center; gap:9px; font-size:13.5px; font-weight:600; margin:0 0 11px;}
+.skill-group .icon{width:16px; height:16px; color:var(--accent);}
+.pill-row{display:flex; gap:7px; flex-wrap:wrap;}
+.pill{font-family:var(--mono); font-size:11.5px; padding:5px 11px; border-radius:100px; background:var(--card-strong); border:1px solid var(--border);}
+
+/* ---------- work ---------- */
+.project{padding:20px 22px; margin-bottom:12px;}
+.project-head{display:flex; justify-content:space-between; align-items:baseline; gap:10px; flex-wrap:wrap;}
+.project-head h3{margin:0; font-size:16px; font-weight:700;}
+.project-title-link{color:var(--text);}
+.project-title-link:hover{color:var(--accent);}
+.stars{font-size:12px; color:var(--accent);}
+.project p{color:var(--muted); font-size:13.5px; margin:9px 0 13px;}
+.tags{display:flex; gap:7px; flex-wrap:wrap; margin-bottom:13px;}
+.tags span{font-family:var(--mono); font-size:10.5px; padding:4px 9px; border-radius:100px; background:var(--card-strong); border:1px solid var(--border);}
+.link{font-size:12.5px; color:var(--accent);}
+.link:hover{text-decoration:underline;}
+
+.project-links{display:flex; gap:8px; flex-wrap:wrap; margin-top:2px;}
+.project-link{
+  display:inline-flex; align-items:center; gap:6px; font-size:12px; font-family:var(--mono);
+  padding:7px 13px 7px 11px; border-radius:100px; border:1px solid var(--border); color:var(--text);
+  background:var(--card-strong); transition:color .2s ease, border-color .2s ease, transform .2s ease, background .2s ease;
+}
+html[dir="rtl"] .project-link{padding:7px 11px 7px 13px;}
+.project-link .icon{width:13px; height:13px; flex:0 0 auto; transition:transform .2s ease;}
+.project-link:hover{color:var(--on-accent); background:var(--accent); border-color:transparent;}
+.project-link.ghost{background:transparent;}
+.project-link.ghost:hover{color:var(--accent); background:var(--card-strong); border-color:var(--accent);}
+.project-link.ghost:hover .icon{transform:translate(2px,-2px);}
+
+.gh-note{font-size:11.5px; color:var(--muted); margin-top:12px;}
+
+/* ---------- auto-moving + drag-scrollable row (github activity) ---------- */
+.autoscroll-row{
+  display:flex; gap:10px; overflow-x:auto; cursor:grab; user-select:none; touch-action:pan-y;
+  -webkit-overflow-scrolling:touch; scrollbar-width:none; padding:2px;
+  -webkit-mask-image:linear-gradient(to right, transparent, #000 20px, #000 calc(100% - 20px), transparent);
+  mask-image:linear-gradient(to right, transparent, #000 20px, #000 calc(100% - 20px), transparent);
+}
+.autoscroll-row::-webkit-scrollbar{display:none;}
+.autoscroll-row.dragging{cursor:grabbing;}
+.autoscroll-row .tile{flex:0 0 auto; min-width:130px;}
+
+/* ---------- horizontal, drag-scrollable project row ---------- */
+.work-scroll{
+  display:flex; gap:12px; overflow-x:auto; scroll-snap-type:x mandatory; cursor:grab; user-select:none;
+  touch-action:pan-y; -webkit-overflow-scrolling:touch; scrollbar-width:none; padding:2px 2px 8px;
+  margin-top:14px; scroll-padding-inline-start:2px;
+}
+.work-scroll::-webkit-scrollbar{display:none;}
+.work-scroll.dragging{cursor:grabbing;}
+.work-scroll .project{flex:0 0 82%; max-width:280px; scroll-snap-align:start; margin-bottom:0; padding:18px 18px;}
+@media (min-width:640px){ .work-scroll .project{flex-basis:320px;} }
+
+.scroll-hint{font-size:11px; color:var(--muted); margin:8px 2px 0; display:flex; align-items:center; gap:5px;}
+.scroll-hint .icon{width:12px; height:12px;}
+
+/* ---------- now (mini timeline) ---------- */
+.now-list{position:relative; display:flex; flex-direction:column; gap:2px; margin-top:14px; padding-inline-start:20px; border-inline-start:1px solid var(--border);}
+.now-item{position:relative; padding:14px 0 14px 18px;}
+html[dir="rtl"] .now-item{padding:14px 18px 14px 0;}
+.now-item::before{content:''; position:absolute; inline-set:-24.5px 0 0 auto; top:19px; width:8px; height:8px; border-radius:50%; background:var(--accent); left:-24.5px;}
+html[dir="rtl"] .now-item::before{left:auto; right:-24.5px;}
+.now-item .t{display:block; font-weight:600; margin-bottom:3px; font-size:14px;}
+.now-item .d{color:var(--muted); font-size:13px;}
+
+/* ---------- faq ---------- */
+details{padding:15px 18px; margin-bottom:8px;}
+summary{cursor:pointer; font-weight:600; font-size:14px; list-style:none;}
+summary::-webkit-details-marker{display:none;}
+details p{color:var(--muted); font-size:13.5px; margin:10px 0 0;}
+
+/* ---------- contact ---------- */
+.contact-box{padding:24px 22px 20px;}
+.contact-box > p{color:var(--muted); margin:0 0 18px; font-size:14px;}
+.contact-form{display:flex; flex-direction:column; gap:13px; margin-bottom:20px;}
+.field{display:flex; flex-direction:column; gap:6px;}
+.field label{font-size:12px; color:var(--muted);}
+.field input, .field textarea{
+  background:var(--input-bg); border:1px solid var(--border); border-radius:11px;
+  padding:10px 12px; color:var(--text); font-family:inherit; font-size:13.5px; resize:vertical;
+}
+.field input:focus, .field textarea:focus{outline:2px solid var(--accent); outline-offset:1px;}
+.form-note{font-size:11.5px; color:var(--muted); margin:0;}
+.contact-links{display:flex; flex-direction:column; gap:9px;}
+.contact-links a{display:flex; align-items:center; gap:9px; font-size:13px;}
+.contact-links a:hover{color:var(--accent);}
+.contact-links .icon{width:16px; height:16px; color:var(--accent);}
+
+footer{text-align:center; font-size:11.5px; color:var(--muted); padding:26px 0 6px;}
+
+@media (max-width:600px){
+  .about-collapse .tile.wide{grid-column:span 2;}
+}
+</style>
 </head>
 <body>
 
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+
 <div class="shell">
-  <!-- SIDEBAR -->
-  <aside class="side">
-    <div>
-      <div class="prompt-tag mono">~/milad</div>
-      <p class="brand">Milad Rezai</p>
-      <p class="brand-sub" data-en="Backend Developer" data-fa="توسعه‌دهنده بک‌اند">Backend Developer</p>
-      <nav class="sidenav mono">
-        <a href="#home"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg><span data-en="Home" data-fa="خانه">Home</span></a>
-        <a href="#about"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1.2-4 4.2-6 7-6s5.8 2 7 6"/></svg><span data-en="About" data-fa="درباره من">About</span></a>
-        <a href="#skills"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6L2 12l6 6"/><path d="M16 6l6 6-6 6"/></svg><span data-en="Skills" data-fa="مهارت‌ها">Skills</span></a>
-        <a href="#work"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg><span data-en="Work" data-fa="پروژه‌ها">Work</span></a>
-        <a href="#github"><svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg><span data-en="GitHub" data-fa="گیت‌هاب">GitHub</span></a>
-        <a href="#now"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><span data-en="Now" data-fa="اکنون">Now</span></a>
-        <a href="#faq"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.9.4-1.5 1-1.5 2"/><path d="M12 17h.01"/></svg><span data-en="FAQ" data-fa="سوالات">FAQ</span></a>
-        <a href="#contact"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span data-en="Contact" data-fa="تماس">Contact</span></a>
-      </nav>
+
+  <!-- FLOATING NAV -->
+  <nav class="topnav">
+    <div class="topnav-links mono">
+      <a href="#home" aria-label="Home"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg></a>
+      <a href="#about" aria-label="About"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1.2-4 4.2-6 7-6s5.8 2 7 6"/></svg></a>
+      <a href="#skills" aria-label="Skills"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6L2 12l6 6"/><path d="M16 6l6 6-6 6"/></svg></a>
+      <a href="#work" aria-label="Work"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></a>
+      <a href="#github" aria-label="GitHub"><svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+      <a href="#now" aria-label="Now"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></a>
+      <a href="#faq" aria-label="FAQ"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.9.4-1.5 1-1.5 2"/><path d="M12 17h.01"/></svg></a>
+      <a href="#contact" aria-label="Contact"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
     </div>
-    <div class="side-foot">
-      <div class="toggle-row">
-        <div class="lang-toggle">
-          <button id="btn-en" class="active">EN</button>
-          <button id="btn-fa">FA</button>
-        </div>
-        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">
-          <svg id="icon-moon" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-          <svg id="icon-sun" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12h2.5M19 12h2.5M4.2 19.8L6 18M18 6l1.8-1.8"/></svg>
-        </button>
-        <a href="terminal.html" class="theme-toggle" id="terminal-link" title="Open terminal mode" aria-label="Open terminal mode">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M6.5 9.5l3 2.5-3 2.5"/><path d="M12 15h5"/></svg>
-        </a>
+    <div class="topnav-controls">
+      <div class="lang-toggle">
+        <button class="active lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fa">FA</button>
       </div>
-      <div class="social-row">
-        <a href="https://github.com/milirezai" target="_blank" rel="noopener"><svg class="icon icon-sm" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>GitHub</a>
-        <a href="https://www.linkedin.com/in/milirezai" target="_blank" rel="noopener"><svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5v6"/><circle cx="8" cy="7.3" r="0.15" fill="currentColor" stroke-width="1.4"/><path d="M12 16.5v-4a2 2 0 0 1 4 0v4"/><path d="M12 12.5v4"/></svg>LinkedIn</a>
+      <button class="icon-btn theme-toggle-btn" type="button" aria-label="Toggle theme">
+        <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12h2.5M19 12h2.5M4.2 19.8L6 18M18 6l1.8-1.8"/></svg>
+      </button>
+      <a href="terminal.html" class="icon-btn" title="Open terminal mode" aria-label="Open terminal mode">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M6.5 9.5l3 2.5-3 2.5"/><path d="M12 15h5"/></svg>
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <span class="badge"><span class="dot" style="background:var(--accent-2)"></span><span data-en="Open to backend opportunities" data-fa="آماده همکاری در نقش بک‌اند">Open to backend opportunities</span></span>
+    <h1><span data-en="Milad Rezai," data-fa="میلاد رضایی،">Milad Rezai,</span> <span class="accent-word" data-en="a backend developer" data-fa="توسعه‌دهنده بک‌اندی">a backend developer</span> <span data-en="working with PHP and Laravel." data-fa="که با PHP و لاراول کار می‌کنه.">working with PHP and Laravel.</span></h1>
+    <p class="lead" data-en="I build REST APIs and open-source Laravel packages — from ticketing systems to payment gateway integrations. Based in Tehran, learning by shipping real projects." data-fa="ری‌است‌ای‌پی‌آی و پکیج‌های متن‌باز لاراول می‌سازم — از سیستم تیکتینگ تا اتصال درگاه‌های پرداخت. مستقر در تهران، یادگیری از طریق ساختن پروژه‌های واقعی.">I build REST APIs and open-source Laravel packages — from ticketing systems to payment gateway integrations. Based in Tehran, learning by shipping real projects.</p>
+    <div class="btn-row">
+      <a class="btn primary" href="#work" data-en="View projects" data-fa="دیدن پروژه‌ها">View projects</a>
+    </div>
+    <div class="hero-links">
+      <a class="hero-link" href="./resume.pdf" download>
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 19h16"/></svg>
+        <span data-en="Download résumé" data-fa="دانلود رزومه">Download résumé</span>
+      </a>
+      <a class="hero-link" href="https://github.com/milirezai" target="_blank" rel="noopener">
+        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        <span>github.com/milirezai</span>
+      </a>
+    </div>
+
+    <div class="ticker-wrap">
+      <div class="ticker" id="ticker-row">
+        <span><b>PHP</b></span><span><b>Laravel</b></span><span><b>MySQL</b></span><span><b>Redis</b></span><span><b>Docker</b></span><span><b>Linux</b></span><span><b>Git</b></span><span><b>REST APIs</b></span>
       </div>
     </div>
-  </aside>
+  </section>
 
-  <!-- MAIN -->
-  <main>
-    <div class="wrap">
-
-      <!-- HERO -->
-      <section id="home" class="hero">
-                <span class="badge"><span class="pulse"></span><span data-en="Open to backend opportunities" data-fa="آماده همکاری در نقش بک‌اند">Open to backend opportunities</span></span>
-        <h1 data-en="Milad Rezai, a backend developer working with PHP and Laravel." data-fa="میلاد رضایی، توسعه‌دهنده بک‌اندی که با PHP و لاراول کار می‌کنه.">Milad Rezai, a backend developer working with PHP and Laravel.</h1>
-        <p class="lead" data-en="I build REST APIs and open-source Laravel packages — from ticketing systems to payment gateway integrations. Based in Tehran, learning by shipping real projects." data-fa="ری‌است‌ای‌پی‌آی و پکیج‌های متن‌باز لاراول می‌سازم — از سیستم تیکتینگ تا اتصال درگاه‌های پرداخت. مستقر در تهران، یادگیری از طریق ساختن پروژه‌های واقعی.">I build REST APIs and open-source Laravel packages — from ticketing systems to payment gateway integrations. Based in Tehran, learning by shipping real projects.</p>
-        <div class="btn-row">
-          <a class="btn primary" href="#work" data-en="View projects" data-fa="دیدن پروژه‌ها">View projects</a>
-          <a class="btn ghost" href="./resume.pdf" download data-en="Download résumé" data-fa="دانلود رزومه">Download résumé</a>
-          <a class="btn ghost" href="https://github.com/milirezai" target="_blank" rel="noopener">github.com/milirezai</a>
-        </div>
-      </section>
-
-      <!-- ABOUT -->
-      <section id="about">
-        <p class="eyebrow mono">01</p>
-        <h2 data-en="About" data-fa="درباره من">About</h2>
+  <!-- ABOUT -->
+  <section id="about" class="reveal">
+    <p class="section-tag mono">01</p>
+    <h2 data-en="About" data-fa="درباره من">About</h2>
+    <div class="bento">
+      <div class="tile wide card">
         <p data-en="I'm a self-taught backend developer focused on PHP and Laravel — REST APIs, package architecture, and clean, testable code. I started programming about a year and nine months ago and learn just-in-time: picking up concepts as real projects demand them, rather than studying syntax upfront." data-fa="من یه توسعه‌دهنده بک‌اند خودآموخته‌ام که روی PHP و لاراول تمرکز دارم — ری‌است‌ای‌پی‌آی، معماری پکیج، و کد تمیز و قابل تست. حدود یک سال و نه ماهه که برنامه‌نویسی رو شروع کردم و یادگیریم just-in-time هست: مفاهیم رو وقتی پروژه واقعی بهشون نیاز داره یاد می‌گیرم، نه از قبل و صرفاً برای یادگیری سینتکس.">I'm a self-taught backend developer focused on PHP and Laravel — REST APIs, package architecture, and clean, testable code. I started programming about a year and nine months ago and learn just-in-time: picking up concepts as real projects demand them, rather than studying syntax upfront.</p>
-        <div class="about-grid">
-          <div class="stat"><span class="num mono">1.9+</span><span class="label" data-en="years coding" data-fa="سال کدنویسی">years coding</span></div>
-          <div class="stat"><span class="num mono">2</span><span class="label" data-en="open-source projects" data-fa="پروژه متن‌باز">open-source projects</span></div>
-          <div class="stat"><span class="num mono">TEH</span><span class="label" data-en="based in Tehran" data-fa="مستقر در تهران">based in Tehran</span></div>
-        </div>
-      </section>
-
-      <!-- SKILLS -->
-      <section id="skills">
-        <p class="eyebrow mono">02</p>
-        <h2 data-en="Skills" data-fa="مهارت‌ها">Skills</h2>
-        <div class="skill-groups">
-          <div class="skill-group">
-            <h3><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6L2 12l6 6"/><path d="M16 6l6 6-6 6"/></svg><span data-en="Language & Framework" data-fa="زبان و فریم‌ورک">Language & Framework</span></h3>
-            <div class="pill-row">
-              <span class="pill">PHP</span><span class="pill">Laravel</span>
-            </div>
-          </div>
-          <div class="skill-group">
-            <h3><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5.5" rx="8" ry="2.8"/><path d="M4 5.5v6c0 1.5 3.6 2.8 8 2.8s8-1.3 8-2.8v-6"/><path d="M4 11.5v6c0 1.5 3.6 2.8 8 2.8s8-1.3 8-2.8v-6"/></svg><span data-en="Data & Infrastructure" data-fa="داده و زیرساخت">Data & Infrastructure</span></h3>
-            <div class="pill-row">
-              <span class="pill">MySQL</span><span class="pill">Redis</span><span class="pill">Docker</span><span class="pill">Linux</span>
-            </div>
-          </div>
-          <div class="skill-group">
-            <h3><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a3 3 0 0 0 4.2 4.2l-5.6 5.6-3-1-1 3-3.9 3.9-2.4-2.4L6.9 16l3-1-1-3 5.6-5.6a3 3 0 0 0 .2-.1z"/></svg><span data-en="Tools & Practices" data-fa="ابزار و روش‌ها">Tools & Practices</span></h3>
-            <div class="pill-row">
-              <span class="pill">Git</span><span class="pill">REST APIs</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- WORK -->
-      <section id="work">
-        <p class="eyebrow mono">03</p>
-        <h2 data-en="Work" data-fa="پروژه‌ها">Work</h2>
-
-        <div class="project">
-          <div class="project-head">
-            <h3><a class="project-title-link" href="work-ticketflow.html">ticketFlow</a></h3>
-            <span class="stars mono" id="stars-ticketflow">★ –</span>
-          </div>
-          <p data-en="An open-source Laravel REST API ticketing and support system — auth, roles and permissions, ticket management, notifications, reports, and SLA-based escalation for unanswered tickets. Built with a teammate; I managed branches, pull requests, code review, and task division." data-fa="یه سیستم تیکتینگ و پشتیبانی متن‌باز به‌صورت ری‌است‌ای‌پی‌آی با لاراول — احراز هویت، نقش و دسترسی، مدیریت تیکت، اعلان‌ها، گزارش‌ها، و اسکالیشن مبتنی بر SLA برای تیکت‌های بی‌پاسخ. با یه هم‌تیمی ساخته شده؛ من مدیریت برنچ‌ها، پول‌ریکوئست‌ها، کدریویو و تقسیم وظایف رو انجام دادم.">An open-source Laravel REST API ticketing and support system — auth, roles and permissions, ticket management, notifications, reports, and SLA-based escalation for unanswered tickets. Built with a teammate; I managed branches, pull requests, code review, and task division.</p>
-          <div class="tags"><span>Laravel</span><span data-en="Team project" data-fa="پروژه تیمی">Team project</span><span>REST API</span></div>
-          <a class="link" href="https://github.com/milirezai/ticketFlow" target="_blank" rel="noopener" data-en="View on GitHub →" data-fa="مشاهده در گیت‌هاب ←">View on GitHub →</a>
-          <a class="link" href="work-ticketflow.html" data-en="Technical details →" data-fa="جزئیات فنی ←" style="margin-inline-start:18px;">Technical details →</a>
-        </div>
-
-        <div class="project">
-          <div class="project-head">
-            <h3><a class="project-title-link" href="work-milipay.html">MiliPay</a></h3>
-            <span class="stars mono" id="stars-milipay">★ –</span>
-          </div>
-          <p data-en="A Laravel package for integrating payment gateways (Zarinpal, Zibal), built with contract-based design and an adapter pattern for gateway responses. Includes FastDriver — a scheduled probe that auto-selects the fastest-responding gateway when none is set explicitly. Published on Packagist." data-fa="یه پکیج لاراول برای اتصال درگاه‌های پرداخت (زرین‌پال، زیبال) با طراحی contract-based و الگوی adapter برای پاسخ درگاه‌ها. شامل FastDriver هست — یه پراب زمان‌بندی‌شده که در نبود انتخاب صریح، سریع‌ترین درگاه رو خودکار انتخاب می‌کنه. روی Packagist منتشر شده.">A Laravel package for integrating payment gateways (Zarinpal, Zibal), built with contract-based design and an adapter pattern for gateway responses. Includes FastDriver — a scheduled probe that auto-selects the fastest-responding gateway when none is set explicitly. Published on Packagist.</p>
-          <div class="tags"><span>Laravel</span><span data-en="Package" data-fa="پکیج">Package</span><span>Packagist</span></div>
-          <a class="link" href="https://github.com/milirezai/milipay" target="_blank" rel="noopener" data-en="View on GitHub →" data-fa="مشاهده در گیت‌هاب ←">View on GitHub →</a>
-          <a class="link" href="work-milipay.html" data-en="Technical details →" data-fa="جزئیات فنی ←" style="margin-inline-start:18px;">Technical details →</a>
-        </div>
-
-        <div class="project">
-          <div class="project-head">
-            <h3><a class="project-title-link" href="work-milirulepilot.html">MiliRulePilot</a></h3>
-            <span class="stars mono" id="stars-milirulepilot">★ –</span>
-          </div>
-          <p data-en="An early-stage Laravel business rule and decision engine package, with AND/OR condition grouping and comparison operators in active development." data-fa="یه پکیج لاراول در مراحل اولیه برای موتور قوانین و تصمیم‌گیری کسب‌وکار، با گروه‌بندی شرط‌های AND/OR و عملگرهای مقایسه که در حال توسعه‌ست.">An early-stage Laravel business rule and decision engine package, with AND/OR condition grouping and comparison operators in active development.</p>
-          <div class="tags"><span>Laravel</span><span data-en="Early stage" data-fa="مرحله اولیه">Early stage</span></div>
-          <a class="link" href="https://github.com/milirezai/milirulepilot" target="_blank" rel="noopener" data-en="View on GitHub →" data-fa="مشاهده در گیت‌هاب ←">View on GitHub →</a>
-          <a class="link" href="work-milirulepilot.html" data-en="Technical details →" data-fa="جزئیات فنی ←" style="margin-inline-start:18px;">Technical details →</a>
-        </div>
-      </section>
-
-      <!-- GITHUB ACTIVITY -->
-      <section id="github">
-        <p class="eyebrow mono">04</p>
-        <h2 data-en="GitHub activity" data-fa="فعالیت گیت‌هاب">GitHub activity</h2>
-        <div class="gh-grid">
-          <div class="gh-stat"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg><span class="n mono" id="gh-repos">–</span><span class="l" data-en="public repos" data-fa="ریپوی عمومی">public repos</span></div>
-          <div class="gh-stat"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.8-3.4 3-5 5.5-5s4.7 1.6 5.5 5"/><path d="M16.5 5.5a3 3 0 0 1 0 5.8"/><path d="M17 14.3c2 .5 3.3 2 3.8 4.7"/></svg><span class="n mono" id="gh-followers">–</span><span class="l" data-en="followers" data-fa="فالوور">followers</span></div>
-          <div class="gh-stat"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.8-3.4 3-5 5.5-5s4.7 1.6 5.5 5"/><path d="M17 8h4M19 6v4"/></svg><span class="n mono" id="gh-following">–</span><span class="l" data-en="following" data-fa="فالووینگ">following</span></div>
-          <div class="gh-stat"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 9.5h18"/><path d="M8 3v3M16 3v3"/></svg><span class="n mono" id="gh-since">–</span><span class="l" data-en="member since" data-fa="عضو از">member since</span></div>
-        </div>
-        <p class="gh-note" id="gh-note" data-en="Pulled live from the GitHub API." data-fa="به‌صورت زنده از GitHub API خونده می‌شه.">Pulled live from the GitHub API.</p>
-      </section>
-
-      <!-- NOW -->
-      <section id="now">
-        <p class="eyebrow mono">05</p>
-        <h2 data-en="Now" data-fa="اکنون">Now</h2>
-        <div class="now-list">
-          <div class="now-item">
-            <svg class="icon icon-now" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a3 3 0 0 0 4.2 4.2l-5.6 5.6-3-1-1 3-3.9 3.9-2.4-2.4L6.9 16l3-1-1-3 5.6-5.6a3 3 0 0 0 .2-.1z"/></svg>
-            <p><span class="t" data-en="Maintaining MiliPay" data-fa="نگهداری MiliPay">Maintaining MiliPay</span><span data-en="Adding driver management Artisan commands and reviewing contributions." data-fa="افزودن دستورات آرتیزان مدیریت درایور و بررسی مشارکت‌ها.">Adding driver management Artisan commands and reviewing contributions.</span></p>
-          </div>
-          <div class="now-item">
-            <svg class="icon icon-now" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/><path d="M8 4v3M16 4v3"/><path d="M8 14l2 2 4-4"/></svg>
-            <p><span class="t" data-en="Building out MiliRulePilot" data-fa="توسعه MiliRulePilot">Building out MiliRulePilot</span><span data-en="Fixing a method-name typo and adding AND/OR condition grouping." data-fa="اصلاح یه تایپوی نام متد و افزودن گروه‌بندی شرط‌های AND/OR.">Fixing a method-name typo and adding AND/OR condition grouping.</span></p>
-          </div>
-          <div class="now-item">
-            <svg class="icon icon-now" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 12h18"/></svg>
-            <p><span class="t" data-en="Open to backend roles" data-fa="آماده همکاری بک‌اند">Open to backend roles</span><span data-en="Looking for my first opportunity as a PHP/Laravel developer." data-fa="در جستجوی اولین فرصت شغلی به‌عنوان توسعه‌دهنده PHP/لاراول.">Looking for my first opportunity as a PHP/Laravel developer.</span></p>
-          </div>
-        </div>
-      </section>
-
-      <!-- FAQ -->
-      <section id="faq">
-        <p class="eyebrow mono">06</p>
-        <h2 data-en="FAQ" data-fa="سوالات متداول">FAQ</h2>
-
-        <details>
-          <summary data-en="Are you available for backend roles right now?" data-fa="الان برای نقش بک‌اند در دسترسی؟">Are you available for backend roles right now?</summary>
-          <p data-en="Yes — I'm looking for my first opportunity as a PHP/Laravel backend developer, remote or in Tehran." data-fa="بله — به دنبال اولین فرصت شغلی به‌عنوان توسعه‌دهنده بک‌اند PHP/لاراول هستم، به‌صورت ریموت یا در تهران.">Yes — I'm looking for my first opportunity as a PHP/Laravel backend developer, remote or in Tehran.</p>
-        </details>
-        <details>
-          <summary data-en="What do you mainly work on?" data-fa="بیشتر روی چی کار می‌کنی؟">What do you mainly work on?</summary>
-          <p data-en="Backend systems: REST APIs, database design, and reusable Laravel packages — authentication, payments, ticketing, and rule engines." data-fa="سیستم‌های بک‌اند: ری‌است‌ای‌پی‌آی، طراحی دیتابیس، و پکیج‌های قابل‌استفاده‌مجدد لاراول — احراز هویت، پرداخت، تیکتینگ و موتور قوانین.">Backend systems: REST APIs, database design, and reusable Laravel packages — authentication, payments, ticketing, and rule engines.</p>
-        </details>
-        <details>
-          <summary data-en="How did you learn?" data-fa="چطور یاد گرفتی؟">How did you learn?</summary>
-          <p data-en="Self-taught, project by project. I pick up a concept when a real project needs it, instead of studying everything upfront." data-fa="خودآموخته، پروژه به پروژه. هر مفهومی رو وقتی یه پروژه واقعی بهش نیاز داره یاد می‌گیرم، نه از قبل و به‌صورت کامل.">Self-taught, project by project. I pick up a concept when a real project needs it, instead of studying everything upfront.</p>
-        </details>
-        <details>
-          <summary data-en="Best way to reach you?" data-fa="بهترین راه ارتباطی؟">Best way to reach you?</summary>
-          <p data-en="LinkedIn or GitHub — links below." data-fa="لینکدین یا گیت‌هاب — لینک‌ها پایین صفحه.">LinkedIn or GitHub — links below.</p>
-        </details>
-      </section>
-
-      <!-- CONTACT -->
-      <section id="contact">
-        <p class="eyebrow mono">07</p>
-        <h2 data-en="Get in touch" data-fa="تماس با من">Get in touch</h2>
-        <div class="contact-box">
-          <p data-en="Have a backend role, a project, or a question about one of my packages? Reach out." data-fa="یه فرصت بک‌اند، یه پروژه، یا سوالی درباره یکی از پکیج‌هام داری؟ در ارتباط باش.">Have a backend role, a project, or a question about one of my packages? Reach out.</p>
-
-          <form id="contact-form" class="contact-form">
-            <div class="field">
-              <label for="cf-name" data-en="Name" data-fa="نام">Name</label>
-              <input id="cf-name" name="name" type="text" required>
-            </div>
-            <div class="field">
-              <label for="cf-email" data-en="Email" data-fa="ایمیل">Email</label>
-              <input id="cf-email" name="email" type="email" required>
-            </div>
-            <div class="field">
-              <label for="cf-message" data-en="Message" data-fa="پیام">Message</label>
-              <textarea id="cf-message" name="message" rows="5" required></textarea>
-            </div>
-            <button type="submit" class="btn primary" data-en="Send message" data-fa="ارسال پیام">Send message</button>
-            <p class="form-note" data-en="This opens your email client." data-fa="این کار کلاینت ایمیلت رو باز می‌کنه.">This opens your email client.</p>
-          </form>
-
-          <div class="contact-links">
-            <a href="mailto:miladrezaix@gmail.com"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>miladrezaix@gmail.com</a>
-            <a href="https://github.com/milirezai" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>github.com/milirezai</a>
-            <a href="https://www.linkedin.com/in/milirezai" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5v6"/><path d="M12 16.5v-4a2 2 0 0 1 4 0v4"/><path d="M12 12.5v4"/></svg>linkedin.com/in/milirezai</a>
-          </div>
-        </div>
-      </section>
-
+      </div>
     </div>
-    <footer>© <span id="year"></span> Milad Rezai — <span data-en="built with plain HTML/CSS, no framework" data-fa="ساخته‌شده با HTML/CSS ساده، بدون فریم‌ورک">built with plain HTML/CSS, no framework</span></footer>
-  </main>
+    <div class="stat-row">
+      <div class="stat-card card hoverable">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+        <span class="stat-num mono">1.9+</span>
+        <span class="stat-label" data-en="years coding" data-fa="سال کدنویسی">years coding</span>
+      </div>
+      <div class="stat-card card hoverable">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>
+        <span class="stat-num mono">2</span>
+        <span class="stat-label" data-en="open-source packages" data-fa="پکیج متن‌باز">open-source packages</span>
+      </div>
+      <div class="stat-card card hoverable">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+        <span class="stat-num mono" data-en="Tehran" data-fa="تهران">Tehran</span>
+        <span class="stat-label" data-en="based in" data-fa="مستقر در">based in</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="reveal">
+    <p class="section-tag mono">02</p>
+    <h2 data-en="Skills" data-fa="مهارت‌ها">Skills</h2>
+    <div class="skill-groups">
+      <div class="skill-group card">
+        <h3><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6L2 12l6 6"/><path d="M16 6l6 6-6 6"/></svg><span data-en="Language & Framework" data-fa="زبان و فریم‌ورک">Language & Framework</span></h3>
+        <div class="pill-row"><span class="pill">PHP</span><span class="pill">Laravel</span></div>
+      </div>
+      <div class="skill-group card">
+        <h3><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5.5" rx="8" ry="2.8"/><path d="M4 5.5v6c0 1.5 3.6 2.8 8 2.8s8-1.3 8-2.8v-6"/><path d="M4 11.5v6c0 1.5 3.6 2.8 8 2.8s8-1.3 8-2.8v-6"/></svg><span data-en="Data & Infrastructure" data-fa="داده و زیرساخت">Data & Infrastructure</span></h3>
+        <div class="pill-row"><span class="pill">MySQL</span><span class="pill">Redis</span><span class="pill">Docker</span><span class="pill">Linux</span></div>
+      </div>
+      <div class="skill-group card">
+        <h3><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a3 3 0 0 0 4.2 4.2l-5.6 5.6-3-1-1 3-3.9 3.9-2.4-2.4L6.9 16l3-1-1-3 5.6-5.6a3 3 0 0 0 .2-.1z"/></svg><span data-en="Tools & Practices" data-fa="ابزار و روش‌ها">Tools & Practices</span></h3>
+        <div class="pill-row"><span class="pill">Git</span><span class="pill">REST APIs</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work" class="reveal">
+    <p class="section-tag mono">03</p>
+    <h2 data-en="Work" data-fa="پروژه‌ها">Work</h2>
+    <div class="work-scroll" id="work-scroll">
+      <div class="project card hoverable">
+        <div class="project-head">
+          <h3><a class="project-title-link" href="work-ticketflow.html">ticketFlow</a></h3>
+          <span class="stars mono" id="stars-ticketflow">★ –</span>
+        </div>
+        <p data-en="An open-source Laravel REST API ticketing and support system — auth, roles and permissions, ticket management, notifications, reports, and SLA-based escalation for unanswered tickets. Built with a teammate; I managed branches, pull requests, code review, and task division." data-fa="یه سیستم تیکتینگ و پشتیبانی متن‌باز به‌صورت ری‌است‌ای‌پی‌آی با لاراول — احراز هویت، نقش و دسترسی، مدیریت تیکت، اعلان‌ها، گزارش‌ها، و اسکالیشن مبتنی بر SLA برای تیکت‌های بی‌پاسخ. با یه هم‌تیمی ساخته شده؛ من مدیریت برنچ‌ها، پول‌ریکوئست‌ها، کدریویو و تقسیم وظایف رو انجام دادم.">An open-source Laravel REST API ticketing and support system — auth, roles and permissions, ticket management, notifications, reports, and SLA-based escalation for unanswered tickets. Built with a teammate; I managed branches, pull requests, code review, and task division.</p>
+        <div class="tags"><span>Laravel</span><span data-en="Team project" data-fa="پروژه تیمی">Team project</span><span>REST API</span></div>
+        <div class="project-links">
+          <a class="project-link" href="https://github.com/milirezai/ticketFlow" target="_blank" rel="noopener">
+            <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+            <span data-en="View on GitHub" data-fa="مشاهده در گیت‌هاب">View on GitHub</span>
+          </a>
+          <a class="project-link ghost" href="work-ticketflow.html">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-2"/><path d="M9 15L20 4"/><path d="M15 4h5v5"/></svg>
+            <span data-en="Technical details" data-fa="جزئیات فنی">Technical details</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="project card hoverable">
+        <div class="project-head">
+          <h3><a class="project-title-link" href="work-milipay.html">MiliPay</a></h3>
+          <span class="stars mono" id="stars-milipay">★ –</span>
+        </div>
+        <p data-en="A Laravel package for integrating payment gateways (Zarinpal, Zibal), built with contract-based design and an adapter pattern for gateway responses. Includes FastDriver — a scheduled probe that auto-selects the fastest-responding gateway when none is set explicitly. Published on Packagist." data-fa="یه پکیج لاراول برای اتصال درگاه‌های پرداخت (زرین‌پال، زیبال) با طراحی contract-based و الگوی adapter برای پاسخ درگاه‌ها. شامل FastDriver هست — یه پراب زمان‌بندی‌شده که در نبود انتخاب صریح، سریع‌ترین درگاه رو خودکار انتخاب می‌کنه. روی Packagist منتشر شده.">A Laravel package for integrating payment gateways (Zarinpal, Zibal), built with contract-based design and an adapter pattern for gateway responses. Includes FastDriver — a scheduled probe that auto-selects the fastest-responding gateway when none is set explicitly. Published on Packagist.</p>
+        <div class="tags"><span>Laravel</span><span data-en="Package" data-fa="پکیج">Package</span><span>Packagist</span></div>
+        <div class="project-links">
+          <a class="project-link" href="https://github.com/milirezai/milipay" target="_blank" rel="noopener">
+            <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+            <span data-en="View on GitHub" data-fa="مشاهده در گیت‌هاب">View on GitHub</span>
+          </a>
+          <a class="project-link ghost" href="work-milipay.html">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-2"/><path d="M9 15L20 4"/><path d="M15 4h5v5"/></svg>
+            <span data-en="Technical details" data-fa="جزئیات فنی">Technical details</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="project card hoverable">
+        <div class="project-head">
+          <h3><a class="project-title-link" href="work-milirulepilot.html">MiliRulePilot</a></h3>
+          <span class="stars mono" id="stars-milirulepilot">★ –</span>
+        </div>
+        <p data-en="An early-stage Laravel business rule and decision engine package, with AND/OR condition grouping and comparison operators in active development." data-fa="یه پکیج لاراول در مراحل اولیه برای موتور قوانین و تصمیم‌گیری کسب‌وکار، با گروه‌بندی شرط‌های AND/OR و عملگرهای مقایسه که در حال توسعه‌ست.">An early-stage Laravel business rule and decision engine package, with AND/OR condition grouping and comparison operators in active development.</p>
+        <div class="tags"><span>Laravel</span><span data-en="Early stage" data-fa="مرحله اولیه">Early stage</span></div>
+        <div class="project-links">
+          <a class="project-link" href="https://github.com/milirezai/milirulepilot" target="_blank" rel="noopener">
+            <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+            <span data-en="View on GitHub" data-fa="مشاهده در گیت‌هاب">View on GitHub</span>
+          </a>
+          <a class="project-link ghost" href="work-milirulepilot.html">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-2"/><path d="M9 15L20 4"/><path d="M15 4h5v5"/></svg>
+            <span data-en="Technical details" data-fa="جزئیات فنی">Technical details</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <p class="scroll-hint mono">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/><path d="M11 18l-6-6 6-6"/></svg>
+      <span data-en="Drag to see more" data-fa="برای دیدن بیشتر بکش">Drag to see more</span>
+    </p>
+  </section>
+
+  <!-- GITHUB -->
+  <section id="github" class="reveal">
+    <p class="section-tag mono">04</p>
+    <h2 data-en="GitHub activity" data-fa="فعالیت گیت‌هاب">GitHub activity</h2>
+    <div class="autoscroll-row" id="gh-scroll">
+      <div class="tile card" style="text-align:center; width: 150px; margin-left: 10px;">
+        <svg class="tile-icon" style="margin:0 auto 8px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+        <span class="num mono" data-field="repos" style="font-size:19px;">–</span><span class="label" data-en="public repos" data-fa="ریپوی عمومی">public repos</span>
+      </div>
+      <div class="tile card" style="text-align:center;width: 150px;">
+        <svg class="tile-icon" style="margin:0 auto 8px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.8-3.4 3-5 5.5-5s4.7 1.6 5.5 5"/><path d="M16.5 5.5a3 3 0 0 1 0 5.8"/><path d="M17 14.3c2 .5 3.3 2 3.8 4.7"/></svg>
+        <span class="num mono" data-field="followers" style="font-size:19px;">–</span><span class="label" data-en="followers" data-fa="فالوور">followers</span>
+      </div>
+      <div class="tile card" style="text-align:center;width: 150px;">
+        <svg class="tile-icon" style="margin:0 auto 8px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.8-3.4 3-5 5.5-5s4.7 1.6 5.5 5"/><path d="M17 8h4M19 6v4"/></svg>
+        <span class="num mono" data-field="following" style="font-size:19px;">–</span><span class="label" data-en="following" data-fa="فالووینگ">following</span>
+      </div>
+      <div class="tile card" style="text-align:center;width: 150px;">
+        <svg class="tile-icon" style="margin:0 auto 8px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 9.5h18"/><path d="M8 3v3M16 3v3"/></svg>
+        <span class="num mono" data-field="since" style="font-size:19px;">–</span><span class="label" data-en="member since" data-fa="عضو از">member since</span>
+      </div>
+    </div>
+    <p class="gh-note" id="gh-note" data-en="Pulled live from the GitHub API." data-fa="به‌صورت زنده از GitHub API خونده می‌شه.">Pulled live from the GitHub API.</p>
+  </section>
+
+  <!-- NOW -->
+  <section id="now" class="reveal">
+    <p class="section-tag mono">05</p>
+    <h2 data-en="Now" data-fa="اکنون">Now</h2>
+    <div class="now-list">
+      <div class="now-item">
+        <span class="t" data-en="Maintaining MiliPay" data-fa="نگهداری MiliPay">Maintaining MiliPay</span>
+        <span class="d" data-en="Adding driver management Artisan commands and reviewing contributions." data-fa="افزودن دستورات آرتیزان مدیریت درایور و بررسی مشارکت‌ها.">Adding driver management Artisan commands and reviewing contributions.</span>
+      </div>
+      <div class="now-item">
+        <span class="t" data-en="Building out MiliRulePilot" data-fa="توسعه MiliRulePilot">Building out MiliRulePilot</span>
+        <span class="d" data-en="Fixing a method-name typo and adding AND/OR condition grouping." data-fa="اصلاح یه تایپوی نام متد و افزودن گروه‌بندی شرط‌های AND/OR.">Fixing a method-name typo and adding AND/OR condition grouping.</span>
+      </div>
+      <div class="now-item">
+        <span class="t" data-en="Open to backend roles" data-fa="آماده همکاری بک‌اند">Open to backend roles</span>
+        <span class="d" data-en="Looking for my first opportunity as a PHP/Laravel developer." data-fa="در جستجوی اولین فرصت شغلی به‌عنوان توسعه‌دهنده PHP/لاراول.">Looking for my first opportunity as a PHP/Laravel developer.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="reveal">
+    <p class="section-tag mono">06</p>
+    <h2 data-en="FAQ" data-fa="سوالات متداول">FAQ</h2>
+    <div style="margin-top:14px;">
+      <details class="card">
+        <summary data-en="Are you available for backend roles right now?" data-fa="الان برای نقش بک‌اند در دسترسی؟">Are you available for backend roles right now?</summary>
+        <p data-en="Yes — I'm looking for my first opportunity as a PHP/Laravel backend developer, remote or in Tehran." data-fa="بله — به دنبال اولین فرصت شغلی به‌عنوان توسعه‌دهنده بک‌اند PHP/لاراول هستم، به‌صورت ریموت یا در تهران.">Yes — I'm looking for my first opportunity as a PHP/Laravel backend developer, remote or in Tehran.</p>
+      </details>
+      <details class="card">
+        <summary data-en="What do you mainly work on?" data-fa="بیشتر روی چی کار می‌کنی؟">What do you mainly work on?</summary>
+        <p data-en="Backend systems: REST APIs, database design, and reusable Laravel packages — authentication, payments, ticketing, and rule engines." data-fa="سیستم‌های بک‌اند: ری‌است‌ای‌پی‌آی، طراحی دیتابیس، و پکیج‌های قابل‌استفاده‌مجدد لاراول — احراز هویت، پرداخت، تیکتینگ و موتور قوانین.">Backend systems: REST APIs, database design, and reusable Laravel packages — authentication, payments, ticketing, and rule engines.</p>
+      </details>
+      <details class="card">
+        <summary data-en="How did you learn?" data-fa="چطور یاد گرفتی؟">How did you learn?</summary>
+        <p data-en="Self-taught, project by project. I pick up a concept when a real project needs it, instead of studying everything upfront." data-fa="خودآموخته، پروژه به پروژه. هر مفهومی رو وقتی یه پروژه واقعی بهش نیاز داره یاد می‌گیرم، نه از قبل و به‌صورت کامل.">Self-taught, project by project. I pick up a concept when a real project needs it, instead of studying everything upfront.</p>
+      </details>
+      <details class="card">
+        <summary data-en="Best way to reach you?" data-fa="بهترین راه ارتباطی؟">Best way to reach you?</summary>
+        <p data-en="LinkedIn or GitHub — links below." data-fa="لینکدین یا گیت‌هاب — لینک‌ها پایین صفحه.">LinkedIn or GitHub — links below.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="reveal">
+    <p class="section-tag mono">07</p>
+    <h2 data-en="Get in touch" data-fa="تماس با من">Get in touch</h2>
+    <div class="contact-box card" style="margin-top:14px;">
+      <p data-en="Have a backend role, a project, or a question about one of my packages? Reach out." data-fa="یه فرصت بک‌اند، یه پروژه، یا سوالی درباره یکی از پکیج‌هام داری؟ در ارتباط باش.">Have a backend role, a project, or a question about one of my packages? Reach out.</p>
+
+      <form id="contact-form" class="contact-form">
+        <div class="field">
+          <label for="cf-name" data-en="Name" data-fa="نام">Name</label>
+          <input id="cf-name" name="name" type="text" required>
+        </div>
+        <div class="field">
+          <label for="cf-email" data-en="Email" data-fa="ایمیل">Email</label>
+          <input id="cf-email" name="email" type="email" required>
+        </div>
+        <div class="field">
+          <label for="cf-message" data-en="Message" data-fa="پیام">Message</label>
+          <textarea id="cf-message" name="message" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn primary" data-en="Send message" data-fa="ارسال پیام">Send message</button>
+        <p class="form-note" data-en="This opens your email client." data-fa="این کار کلاینت ایمیلت رو باز می‌کنه.">This opens your email client.</p>
+      </form>
+
+      <div class="contact-links">
+        <a href="mailto:miladrezaix@gmail.com"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>miladrezaix@gmail.com</a>
+        <a href="https://github.com/milirezai" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>github.com/milirezai</a>
+        <a href="https://www.linkedin.com/in/milirezai" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10.5v6"/><path d="M12 16.5v-4a2 2 0 0 1 4 0v4"/><path d="M12 12.5v4"/></svg>linkedin.com/in/milirezai</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>© <span id="year"></span> Milad Rezai — <span data-en="built with plain HTML/CSS, no framework" data-fa="ساخته‌شده با HTML/CSS ساده، بدون فریم‌ورک">built with plain HTML/CSS, no framework</span></footer>
 </div>
 
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
 
+// ---------- Reveal sections on scroll ----------
+(function(){
+  const items = document.querySelectorAll('.reveal');
+  if(!items.length) return;
+  if(!('IntersectionObserver' in window)){
+    items.forEach(el=> el.classList.add('in'));
+    return;
+  }
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold:0.12, rootMargin:'0px 0px -40px 0px' });
+  items.forEach(el=> io.observe(el));
+})();
 
-<script src="js/index.js"></script>
+// ---------- Language toggle ----------
+const langBtns = document.querySelectorAll('.lang-btn');
+function setLang(lang){
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === 'fa' ? 'rtl' : 'ltr';
+  document.querySelectorAll('[data-en]').forEach(el=>{
+    el.textContent = el.getAttribute('data-' + lang);
+  });
+  langBtns.forEach(btn=>{
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+  });
+  try{ localStorage.setItem('lang', lang); }catch(e){}
+}
+langBtns.forEach(btn=>{
+  btn.addEventListener('click', ()=> setLang(btn.getAttribute('data-lang')));
+});
+
+// ---------- Live GitHub data ----------
+function setField(field, value){
+  document.querySelectorAll(`[data-field="${field}"]`).forEach(el=> el.textContent = value);
+}
+async function loadGithub(){
+  try{
+    const res = await fetch('https://api.github.com/users/milirezai');
+    if(!res.ok) throw new Error('gh user fetch failed');
+    const data = await res.json();
+    setField('repos', data.public_repos ?? '–');
+    setField('followers', data.followers ?? '–');
+    setField('following', data.following ?? '–');
+    if(data.created_at){
+      setField('since', new Date(data.created_at).getFullYear());
+    }
+  }catch(e){
+    document.getElementById('gh-note').textContent = "Couldn't reach the GitHub API right now — refresh to try again.";
+  }
+}
+async function loadRepoStars(repo, elId){
+  try{
+    const res = await fetch(`https://api.github.com/repos/milirezai/${repo}`);
+    if(!res.ok) throw new Error('repo fetch failed');
+    const data = await res.json();
+    document.getElementById(elId).textContent = '★ ' + (data.stargazers_count ?? 0);
+  }catch(e){
+    document.getElementById(elId).textContent = '★ –';
+  }
+}
+loadGithub();
+loadRepoStars('ticketFlow', 'stars-ticketflow');
+loadRepoStars('milipay', 'stars-milipay');
+loadRepoStars('milirulepilot', 'stars-milirulepilot');
+
+// ---------- Contact form -> mailto ----------
+const CONTACT_EMAIL = 'miladrezaix@gmail.com';
+document.getElementById('contact-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  const name = document.getElementById('cf-name').value.trim();
+  const email = document.getElementById('cf-email').value.trim();
+  const message = document.getElementById('cf-message').value.trim();
+  const subject = encodeURIComponent(`Portfolio contact from ${name}`);
+  const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
+  window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+});
+
+// ---------- Drag-to-scroll + optional auto-scroll for horizontal rows ----------
+function makeScrollRow(el, { auto = false, speed = 0.45, resumeDelay = 1400, mode = 'loop' } = {}){
+  if(!el) return;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let isDown = false, moved = false, startX = 0, startScroll = 0;
+  let paused = false, resumeTimer = null, direction = 1;
+
+  function loop(){
+    if(auto && !reduceMotion && !paused && !isDown){
+      if(mode === 'pingpong'){
+        const max = el.scrollWidth - el.clientWidth;
+        el.scrollLeft += speed * direction;
+        if(el.scrollLeft >= max){ el.scrollLeft = max; direction = -1; }
+        else if(el.scrollLeft <= 0){ el.scrollLeft = 0; direction = 1; }
+      } else {
+        el.scrollLeft += speed;
+        const half = el.scrollWidth / 2;
+        if(half > 0 && el.scrollLeft >= half){
+          el.scrollLeft -= half;
+        }
+      }
+    }
+    requestAnimationFrame(loop);
+  }
+  if(auto) requestAnimationFrame(loop);
+
+  el.addEventListener('pointerdown', (e)=>{
+    isDown = true; moved = false;
+    startX = e.clientX; startScroll = el.scrollLeft;
+    el.classList.add('dragging');
+    try{ el.setPointerCapture(e.pointerId); }catch(err){}
+    if(resumeTimer) clearTimeout(resumeTimer);
+    paused = true;
+  });
+  el.addEventListener('pointermove', (e)=>{
+    if(!isDown) return;
+    const dx = e.clientX - startX;
+    if(Math.abs(dx) > 3) moved = true;
+    el.scrollLeft = startScroll - dx;
+  });
+  function endDrag(){
+    if(!isDown) return;
+    isDown = false;
+    el.classList.remove('dragging');
+    if(moved){
+      const suppressClick = (ev)=>{ ev.preventDefault(); ev.stopPropagation(); };
+      el.addEventListener('click', suppressClick, { capture:true, once:true });
+    }
+    if(auto){
+      resumeTimer = setTimeout(()=>{ paused = false; }, resumeDelay);
+    }
+  }
+  el.addEventListener('pointerup', endDrag);
+  el.addEventListener('pointercancel', endDrag);
+  el.addEventListener('pointerleave', ()=>{ if(isDown) endDrag(); });
+
+  // let a vertical mouse wheel scroll this row horizontally
+  el.addEventListener('wheel', (e)=>{
+    if(Math.abs(e.deltaY) > Math.abs(e.deltaX)){
+      el.scrollLeft += e.deltaY;
+      e.preventDefault();
+      if(auto){
+        if(resumeTimer) clearTimeout(resumeTimer);
+        paused = true;
+        resumeTimer = setTimeout(()=>{ paused = false; }, resumeDelay);
+      }
+    }
+  }, { passive:false });
+}
+makeScrollRow(document.getElementById('gh-scroll'), { auto:true, speed:0.45, mode:'pingpong' });
+makeScrollRow(document.getElementById('ticker-row'), { auto:true, speed:0.45, mode:'pingpong' });
+// makeScrollRow(document.getElementById('work-scroll'), { auto:true, speed:1, mode:'pingpong' });
+
+// ---------- Theme toggle ----------
+(function(){
+  function currentTheme(){ return document.documentElement.getAttribute('data-theme') || 'dark'; }
+  function applyThemeIcons(theme){
+    document.querySelectorAll('.icon-moon').forEach(el=>{ el.style.display = theme === 'dark' ? 'block' : 'none'; });
+    document.querySelectorAll('.icon-sun').forEach(el=>{ el.style.display = theme === 'light' ? 'block' : 'none'; });
+  }
+  applyThemeIcons(currentTheme());
+  document.querySelectorAll('.theme-toggle-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var next = currentTheme() === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      try{ localStorage.setItem('theme', next); }catch(e){}
+      applyThemeIcons(next);
+    });
+  });
+})();
+</script>
 </body>
 </html>

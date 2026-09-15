@@ -1,23 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>(function(){try{var t=localStorage.getItem('theme');if(t){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 <title>milad@backend: ~</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230c0d0a'/%3E%3Ctext x='10' y='42' font-family='monospace' font-size='30' font-weight='700' fill='%23e8a33d'%3E%3E_%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23081a2e'/%3E%3Ctext x='11' y='42' font-family='monospace' font-size='28' font-weight='700' fill='%232f8bff'%3E%3E_%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/terminal.css">
 </head>
 <body>
 
-<div id="screen">
-  <div id="output"></div>
-  <div class="prompt-row">
-    <span class="prompt-label mono" id="prompt-label">milad@backend:~$</span>
-    <input id="cmd-input" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Terminal command input">
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+
+<div class="term-shell">
+  <div class="term-window">
+    <div class="term-titlebar">
+      <div class="term-dots"><span></span><span></span><span></span></div>
+      <div class="term-title mono">milad@backend: ~</div>
+      <div class="term-actions">
+        <button class="icon-btn" id="term-theme-toggle" type="button" aria-label="Toggle theme">
+          <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12h2.5M19 12h2.5M4.2 19.8L6 18M18 6l1.8-1.8"/></svg>
+        </button>
+        <a href="index.html" class="icon-btn" title="Back to site" aria-label="Back to site">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg>
+        </a>
+      </div>
+    </div>
+    <div id="screen">
+      <div id="output"></div>
+      <div class="prompt-row">
+        <span class="prompt-label mono" id="prompt-label">milad@backend:~$</span>
+        <input id="cmd-input" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Terminal command input">
+      </div>
+    </div>
   </div>
 </div>
-
 
 <script src="js/terminal.js"></script>
 </body>

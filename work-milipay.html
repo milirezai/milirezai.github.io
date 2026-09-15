@@ -4,82 +4,138 @@
 <script>(function(){try{var t=localStorage.getItem('theme');if(t){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MiliPay — Milad Rezai</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23101014'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='30' font-weight='700' fill='%23cf9d4f' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
+<title>MiliPay · Milad Rezai</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23081a2e'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='30' font-weight='700' fill='%232f8bff' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/work-milipay.css">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700;800&family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/work.css">
 </head>
 <body>
-<div class="topbar">
-  <a class="back mono" href="index.html"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M11 6l-6 6 6 6"/></svg><span data-en="Back to portfolio" data-fa="بازگشت به پورتفولیو">Back to portfolio</span></a>
-  <div class="toggle-row">
-    <div class="lang-toggle">
-      <button id="btn-en" class="active">EN</button>
-      <button id="btn-fa">FA</button>
-    </div>
-    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">
-      <svg id="icon-moon" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-      <svg id="icon-sun" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12h2.5M19 12h2.5M4.2 19.8L6 18M18 6l1.8-1.8"/></svg>
-    </button>
-    <a href="terminal.html" class="theme-toggle" id="terminal-link" title="Open terminal mode" aria-label="Open terminal mode">
-      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M6.5 9.5l3 2.5-3 2.5"/><path d="M12 15h5"/></svg>
+
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+
+<div class="shell">
+
+  <nav class="topnav">
+    <a href="index.html" class="back-link">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M11 6l-6 6 6 6"/></svg>
+      <span data-en="Back to portfolio" data-fa="بازگشت به صفحه اصلی">Back to portfolio</span>
     </a>
-  </div>
-</div>
+    <div class="topnav-controls">
+      <div class="lang-toggle">
+        <button class="active lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fa">FA</button>
+      </div>
+      <button class="icon-btn theme-toggle-btn" type="button" aria-label="Toggle theme">
+        <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12h2.5M19 12h2.5M4.2 19.8L6 18M18 6l1.8-1.8"/></svg>
+      </button>
+    </div>
+  </nav>
 
-<div class="wrap">
-  <p class="kicker mono" data-en="OPEN-SOURCE · LARAVEL PACKAGE" data-fa="متن‌باز · پکیج لاراول">OPEN-SOURCE · LARAVEL PACKAGE</p>
-  <h1>MiliPay</h1>
-  <p class="lead" data-en="A Laravel package for integrating payment gateways, designed around contracts and adapters so new gateways can be added without touching the core." data-fa="یه پکیج لاراول برای اتصال درگاه‌های پرداخت، طراحی‌شده حول contract و adapter تا درگاه‌های جدید بدون دست‌زدن به هسته اضافه بشن.">A Laravel package for integrating payment gateways, designed around contracts and adapters so new gateways can be added without touching the core.</p>
+  <!-- HERO -->
+  <section class="pkg-hero">
+    <span class="badge"><span class="dot" style="background:var(--accent-2)"></span><span data-en="Published package" data-fa="پکیج منتشرشده">Published package</span></span>
+    <h1>MiliPay</h1>
+    <p class="pkg-tagline" data-en="A Laravel package for integrating payment gateways (Zarinpal, Zibal), built with contract-based design and an adapter pattern for gateway responses. Published on Packagist." data-fa="یه پکیج لاراول برای اتصال درگاه‌های پرداخت (زرین‌پال، زیبال) با طراحی contract-based و الگوی adapter برای پاسخ درگاه‌ها. روی Packagist منتشر شده.">A Laravel package for integrating payment gateways (Zarinpal, Zibal), built with contract-based design and an adapter pattern for gateway responses. Published on Packagist.</p>
+    <div class="btn-row">
+      <a class="btn primary" href="https://github.com/milirezai/milipay" target="_blank" rel="noopener">
+        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        <span data-en="View on GitHub" data-fa="مشاهده در گیت‌هاب">View on GitHub</span>
+      </a>
+      <a class="btn ghost" href="https://packagist.org/packages/milirezai/milipay" target="_blank" rel="noopener">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"/><path d="M12 12l8-4.5M12 12v9M12 12L4 7.5"/></svg>
+        <span data-en="View on Packagist" data-fa="مشاهده در Packagist">View on Packagist</span>
+      </a>
+    </div>
+  </section>
 
+  <!-- OVERVIEW -->
+  <section class="reveal">
+    <p class="section-tag mono">01</p>
+    <h2 data-en="Overview" data-fa="نمای کلی">Overview</h2>
+    <div class="prose-card card">
+      <div class="prose">
+        <p data-en="MiliPay gives Laravel apps a single, consistent interface for multiple Iranian payment gateways. Each gateway is a driver built against a shared contract, so the calling code never needs to know which provider is actually handling a payment." data-fa="MiliPay به اپلیکیشن‌های لاراول یه اینترفیس واحد و یکپارچه برای چند درگاه پرداخت ایرانی می‌ده. هر درگاه یه درایوره که روی یه contract مشترک ساخته شده، پس کد فراخواننده هیچ‌وقت نیازی نداره بدونه واقعاً کدوم provider داره پرداخت رو مدیریت می‌کنه.">MiliPay gives Laravel apps a single, consistent interface for multiple Iranian payment gateways. Each gateway is a driver built against a shared contract, so the calling code never needs to know which provider is actually handling a payment.</p>
+        <p data-en="Gateway responses are normalized through an adapter layer, so success/failure/verification handling looks identical no matter which gateway processed the transaction." data-fa="پاسخ‌های درگاه از طریق یه لایه adapter نرمالایز می‌شن، پس مدیریت موفقیت/شکست/تایید صرف‌نظر از اینکه کدوم درگاه تراکنش رو پردازش کرده، دقیقاً یکسان به نظر می‌رسه.">Gateway responses are normalized through an adapter layer, so success/failure/verification handling looks identical no matter which gateway processed the transaction.</p>
+      </div>
+    </div>
+  </section>
 
-  <section class="package-stats-section">
+  <!-- FEATURES -->
+  <section class="reveal">
+    <p class="section-tag mono">02</p>
+    <h2 data-en="Features" data-fa="امکانات">Features</h2>
+    <div class="feature-list">
+      <div class="feature card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a3 3 0 0 0 4.2 4.2l-5.6 5.6-3-1-1 3-3.9 3.9-2.4-2.4L6.9 16l3-1-1-3 5.6-5.6a3 3 0 0 0 .2-.1z"/></svg>
+        <div>
+          <h3 data-en="Contract-based drivers" data-fa="درایورهای contract-based">Contract-based drivers</h3>
+          <p data-en="Each gateway implements a shared interface, so adding a new provider means writing one driver — no changes to calling code." data-fa="هر درگاه یه اینترفیس مشترک رو پیاده‌سازی می‌کنه، پس اضافه‌کردن یه provider جدید یعنی نوشتن یه درایور — بدون تغییر در کد فراخواننده.">Each gateway implements a shared interface, so adding a new provider means writing one driver — no changes to calling code.</p>
+        </div>
+      </div>
+      <div class="feature card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18"/></svg>
+        <div>
+          <h3 data-en="Response adapter pattern" data-fa="الگوی adapter برای پاسخ‌ها">Response adapter pattern</h3>
+          <p data-en="Normalizes each gateway's raw response into one consistent shape for success, failure, and verification." data-fa="پاسخ خام هر درگاه رو به یه شکل یکپارچه برای موفقیت، شکست و تایید تبدیل می‌کنه.">Normalizes each gateway's raw response into one consistent shape for success, failure, and verification.</p>
+        </div>
+      </div>
+      <div class="feature card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+        <div>
+          <h3 data-en="FastDriver auto-selection" data-fa="انتخاب خودکار با FastDriver">FastDriver auto-selection</h3>
+          <p data-en="A scheduled probe pings each gateway and auto-selects the fastest-responding one when no driver is set explicitly." data-fa="یه پراب زمان‌بندی‌شده هر درگاه رو پینگ می‌کنه و در نبود انتخاب صریح، سریع‌ترین درگاه رو خودکار انتخاب می‌کنه.">A scheduled probe pings each gateway and auto-selects the fastest-responding one when no driver is set explicitly.</p>
+        </div>
+      </div>
+      <div class="feature card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-9a4 4 0 0 0 0 8h5"/><path d="M20 7l-3-3M20 7l-3 3"/></svg>
+        <div>
+          <h3 data-en="Packagist-published" data-fa="منتشرشده روی Packagist">Packagist-published</h3>
+          <p data-en="Installable in any Laravel project via Composer, with versioned releases." data-fa="از طریق Composer در هر پروژه لاراولی قابل‌نصب، با ریلیزهای نسخه‌بندی‌شده.">Installable in any Laravel project via Composer, with versioned releases.</p>
+        </div>
+      </div>
+    </div>
+    <div class="pill-row">
+      <span class="pill">Laravel</span><span class="pill">Composer</span><span class="pill">Zarinpal</span><span class="pill">Zibal</span><span class="pill">Packagist</span>
+    </div>
+  </section>
+
+  <!-- PACKAGE STATS -->
+  <section class="reveal">
+    <p class="section-tag mono">03</p>
     <h2 data-en="Package stats" data-fa="آمار پکیج">Package stats</h2>
-    <div class="package-stats" id="package-stats">
-      <div class="package-stat"><span class="n mono" id="pkg-stars">18</span><span class="l" data-en="GitHub stars" data-fa="استار گیت‌هاب">GitHub stars</span></div>
-      <div class="package-stat"><span class="n mono" id="pkg-installs">37</span><span class="l" data-en="Packagist installs" data-fa="نصب از Packagist">Packagist installs</span></div>
-      <div class="package-stat"><span class="n mono" id="pkg-contributors">–</span><span class="l" data-en="Contributors" data-fa="کانتریبیوترها">Contributors</span></div>
-      <div class="package-stat"><span class="n mono" id="pkg-forks">1</span><span class="l" data-en="Forks" data-fa="فورک‌ها">Forks</span></div>
-      <div class="package-stat"><span class="n mono" id="pkg-php">&gt;= 8.2</span><span class="l" data-en="PHP" data-fa="PHP">PHP</span></div>
-      <div class="package-stat"><span class="n mono" id="pkg-version">v4.0.2</span><span class="l" data-en="Latest version" data-fa="آخرین نسخه">Latest version</span></div>
-      <div class="package-stat package-stat-wide"><span class="n mono" id="pkg-laravel">12.x · 13.x</span><span class="l" data-en="Supported Laravel versions" data-fa="نسخه‌های پشتیبانی‌شده لاراول">Supported Laravel versions</span></div>
-      <div class="package-stat"><span class="n mono" id="pkg-issues">0</span><span class="l" data-en="Open issues" data-fa="ایشوهای باز">Open issues</span></div>
+    <div class="autoscroll-row" id="pkg-stats-row">
+      <div class="tile card" style="text-align:center; width: 150px; margin-left: 10px;">
+        <svg class="tile-icon" style="margin:0 auto 8px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17.3l-6.2 3.6 1.6-7L2 9.2l7.1-.6L12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7z"/></svg>
+        <span class="num mono" data-field="stars" style="font-size:19px;">–</span><span class="label" data-en="stars" data-fa="استار">stars</span>
+      </div>
+      <div class="tile card" style="text-align:center;width: 150px;">
+        <svg class="tile-icon" style="margin:0 auto 8px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.4"/><circle cx="18" cy="6" r="2.4"/><circle cx="6" cy="18" r="2.4"/><path d="M6 8.4V15a3 3 0 0 0 3 3h6.5"/><path d="M18 8.4v2.6"/></svg>
+        <span class="num mono" data-field="forks" style="font-size:19px;">–</span><span class="label" data-en="forks" data-fa="فورک">forks</span>
+      </div>
+      <div class="tile card" style="text-align:center;width: 150px;">
+        <svg class="tile-icon" style="margin:0 auto 8px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
+        <span class="num mono" data-field="issues" style="font-size:19px;">–</span><span class="label" data-en="open issues" data-fa="ایشوی باز">open issues</span>
+      </div>
+      <div class="tile card" style="text-align:center;width: 150px;">
+        <svg class="tile-icon" style="margin:0 auto 8px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 9.5h18"/><path d="M8 3v3M16 3v3"/></svg>
+        <span class="num mono" data-field="updated" style="font-size:15px;">–</span><span class="label" data-en="last updated" data-fa="آخرین آپدیت">last updated</span>
+      </div>
     </div>
-    <p class="package-stats-note mono" data-en="Live values are fetched from GitHub and Packagist when the page loads." data-fa="مقادیر به‌صورت زنده هنگام باز شدن صفحه از GitHub و Packagist دریافت می‌شن.">Live values are fetched from GitHub and Packagist when the page loads.</p>
+    <p class="scroll-hint mono">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/><path d="M11 18l-6-6 6-6"/></svg>
+      <span data-en="Drag to see more" data-fa="برای دیدن بیشتر بکش">Drag to see more</span>
+    </p>
+    <p class="gh-note" id="pkg-stats-note" data-en="Pulled live from the GitHub API." data-fa="به‌صورت زنده از GitHub API خونده می‌شه.">Pulled live from the GitHub API.</p>
   </section>
 
-  <div class="tags"><span>Laravel</span><span>Zarinpal</span><span>Zibal</span><span data-en="Contract-based" data-fa="Contract-based">Contract-based</span><span data-en="Adapter pattern" data-fa="Adapter pattern">Adapter pattern</span></div>
-  <a class="btn" href="https://github.com/milirezai/milipay" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg><span data-en="View repository" data-fa="مشاهده ریپازیتوری">View repository</span></a>
-
-  <section>
-    <h2 data-en="Architecture" data-fa="معماری">Architecture</h2>
-    <ul>
-      <li data-en="Contract-based design: every gateway implements the same interface, so the rest of the app never depends on a specific provider's SDK." data-fa="طراحی contract-based: هر درگاه همون اینترفیس مشترک رو پیاده می‌کنه، پس بقیه اپلیکیشن هیچ‌وقت به SDK یه پرووایدر خاص وابسته نمی‌شه.">Contract-based design: every gateway implements the same interface, so the rest of the app never depends on a specific provider's SDK.</li>
-      <li data-en="An adapter pattern normalizes each gateway's raw response into one consistent response object, regardless of how Zarinpal or Zibal structure their replies." data-fa="یه الگوی adapter پاسخ خام هر درگاه رو به یه آبجکت پاسخ یکسان تبدیل می‌کنه، مستقل از اینکه زرین‌پال یا زیبال چطور پاسخشون رو ساختاردهی می‌کنن.">An adapter pattern normalizes each gateway's raw response into one consistent response object, regardless of how Zarinpal or Zibal structure their replies.</li>
-      <li data-en="Registered through Laravel's service container and exposed via a facade, so it's used the same way any core Laravel service is." data-fa="از طریق سرویس کانتینر لاراول ثبت و از طریق یه فاساد در دسترس قرار می‌گیره، پس دقیقاً مثل هر سرویس هسته‌ای لاراول استفاده می‌شه.">Registered through Laravel's service container and exposed via a facade, so it's used the same way any core Laravel service is.</li>
-      <li data-en="Artisan commands, namespaced under milipay:driver:*, for listing, enabling, disabling, and configuring drivers (default, timeout, retry) from the command line." data-fa="دستورات آرتیزان، با namespace زیر milipay:driver:*، برای لیست، فعال‌سازی، غیرفعال‌سازی و پیکربندی درایورها (پیش‌فرض، تایم‌اوت، ریترای) از خط فرمان.">Artisan commands, namespaced under milipay:driver:*, for listing, enabling, disabling, and configuring drivers (default, timeout, retry) from the command line.</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2 data-en="FastDriver" data-fa="FastDriver">FastDriver</h2>
-    <div class="note-box">
-      <span data-en="When no driver is set explicitly, a scheduled job periodically probes each sandbox gateway and automatically selects whichever one responds fastest — so the app always defaults to the most reliable gateway available at that moment." data-fa="وقتی هیچ درایوری به‌صورت صریح تنظیم نشده، یه جاب زمان‌بندی‌شده به‌صورت دوره‌ای هر درگاه سندباکس رو پراب می‌کنه و خودکار هرکدوم که سریع‌تر جواب بده رو انتخاب می‌کنه — پس اپلیکیشن همیشه به قابل‌اعتمادترین درگاه در دسترس در اون لحظه پیش‌فرض می‌گیره.">When no driver is set explicitly, a scheduled job periodically probes each sandbox gateway and automatically selects whichever one responds fastest — so the app always defaults to the most reliable gateway available at that moment.</span>
-    </div>
-  </section>
-
-  <section>
-    <h2 data-en="A bug worth writing about" data-fa="یه باگ که ارزش نوشتن داشت">A bug worth writing about</h2>
-    <p style="font-size:14.5px; color:var(--muted); margin-bottom:12px;" data-en="The Registry class holding the payment pipeline steps was bound with bind() instead of singleton(). Laravel occasionally clears its Facade resolved-instance cache mid-request — and when that happened inside a queued job, a fresh, empty Registry was created on the next resolve, silently breaking the pipeline." data-fa="کلاس Registry که مراحل پایپ‌لاین پرداخت رو نگه می‌داشت با bind() به‌جای singleton() بایند شده بود. لاراول گاهی کش instance رزالوشده Facade رو وسط ریکوئست پاک می‌کنه — و وقتی این وسط یه جاب صف‌شده اتفاق افتاد، یه Registry تازه و خالی توی رزالو بعدی ساخته شد و بی‌سروصدا پایپ‌لاین رو خراب کرد.">The Registry class holding the payment pipeline steps was bound with bind() instead of singleton(). Laravel occasionally clears its Facade resolved-instance cache mid-request — and when that happened inside a queued job, a fresh, empty Registry was created on the next resolve, silently breaking the pipeline.</p>
-    <div class="note-box">
-      <span data-en="The fix: bind Registry as a true singleton() so the same instance survives the facade cache clear. I wrote a Persian LinkedIn post on the lesson — Facade caching isn't the same guarantee as a true singleton binding." data-fa="راه‌حل: بایند کردن Registry به‌صورت یه singleton() واقعی تا همون نمونه در برابر پاک‌شدن کش فاساد باقی بمونه. یه پست لینکدین فارسی درباره این درس نوشتم — کشینگ فاساد همون تضمین یه بایندینگ سینگلتون واقعی رو نمی‌ده.">The fix: bind Registry as a true singleton() so the same instance survives the facade cache clear. I wrote a Persian LinkedIn post on the lesson — Facade caching isn't the same guarantee as a true singleton binding.</span>
-    </div>
-  </section>
+  <footer>© <span id="year"></span> Milad Rezai — <a href="index.html" data-en="back to portfolio" data-fa="بازگشت به صفحه اصلی">back to portfolio</a></footer>
 </div>
 
-
-
-<script src="js/work-milipay.js"></script>
+<script src="js/work.js"></script>
+<script>initPackageStats('milipay');</script>
 </body>
 </html>

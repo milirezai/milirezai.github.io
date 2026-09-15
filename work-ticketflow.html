@@ -4,62 +4,134 @@
 <script>(function(){try{var t=localStorage.getItem('theme');if(t){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ticketFlow — Milad Rezai</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23101014'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='30' font-weight='700' fill='%23cf9d4f' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
+<title>ticketFlow · Milad Rezai</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23081a2e'/%3E%3Ctext x='32' y='42' font-family='monospace' font-size='30' font-weight='700' fill='%232f8bff' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/work-ticketflow.css">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700;800&family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/work.css">
 </head>
 <body>
-<div class="topbar">
-  <a class="back mono" href="index.html"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M11 6l-6 6 6 6"/></svg><span data-en="Back to portfolio" data-fa="بازگشت به پورتفولیو">Back to portfolio</span></a>
-  <div class="toggle-row">
-    <div class="lang-toggle">
-      <button id="btn-en" class="active">EN</button>
-      <button id="btn-fa">FA</button>
-    </div>
-    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle theme">
-      <svg id="icon-moon" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-      <svg id="icon-sun" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12h2.5M19 12h2.5M4.2 19.8L6 18M18 6l1.8-1.8"/></svg>
-    </button>
-    <a href="terminal.html" class="theme-toggle" id="terminal-link" title="Open terminal mode" aria-label="Open terminal mode">
-      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M6.5 9.5l3 2.5-3 2.5"/><path d="M12 15h5"/></svg>
+
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+
+<div class="shell">
+
+  <nav class="topnav">
+    <a href="index.html" class="back-link">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M11 6l-6 6 6 6"/></svg>
+      <span data-en="Back to portfolio" data-fa="بازگشت به صفحه اصلی">Back to portfolio</span>
     </a>
-  </div>
-</div>
+    <div class="topnav-controls">
+      <div class="lang-toggle">
+        <button class="active lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fa">FA</button>
+      </div>
+      <button class="icon-btn theme-toggle-btn" type="button" aria-label="Toggle theme">
+        <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.5M12 19v2.5M4.2 4.2l1.8 1.8M18 18l1.8 1.8M2.5 12h2.5M19 12h2.5M4.2 19.8L6 18M18 6l1.8-1.8"/></svg>
+      </button>
+    </div>
+  </nav>
 
-<div class="wrap">
-  <p class="kicker mono" data-en="OPEN-SOURCE · TEAM PROJECT" data-fa="متن‌باز · پروژه تیمی">OPEN-SOURCE · TEAM PROJECT</p>
-  <h1>ticketFlow</h1>
-  <p class="lead" data-en="A Laravel REST API ticketing and support system built with a teammate, with role-based access, SLA escalation, and a full ticket lifecycle." data-fa="یه سیستم تیکتینگ و پشتیبانی ری‌است‌ای‌پی‌آی با لاراول که با یه هم‌تیمی ساخته شده، با دسترسی مبتنی بر نقش، اسکالیشن SLA و چرخه کامل عمر تیکت.">A Laravel REST API ticketing and support system built with a teammate, with role-based access, SLA escalation, and a full ticket lifecycle.</p>
-  <div class="tags"><span>Laravel</span><span>REST API</span><span data-en="2-person team" data-fa="تیم دو نفره">2-person team</span><span data-en="MySQL" data-fa="MySQL">MySQL</span></div>
-  <a class="btn" href="https://github.com/milirezai/ticketFlow" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg><span data-en="View repository" data-fa="مشاهده ریپازیتوری">View repository</span></a>
-
-  <section>
-    <h2 data-en="What it does" data-fa="چیکار می‌کنه">What it does</h2>
-    <ul>
-      <li data-en="Authentication with role- and permission-based access control (admin, agent, customer)." data-fa="احراز هویت با کنترل دسترسی مبتنی بر نقش و مجوز (ادمین، پشتیبان، مشتری).">Authentication with role- and permission-based access control (admin, agent, customer).</li>
-      <li data-en="Full ticket management: creation, status transitions, threaded conversations between customer and agent." data-fa="مدیریت کامل تیکت: ایجاد، تغییر وضعیت، مکالمات رشته‌ای بین مشتری و پشتیبان.">Full ticket management: creation, status transitions, threaded conversations between customer and agent.</li>
-      <li data-en="Notifications on ticket updates, and reporting endpoints for support-team metrics." data-fa="اعلان روی به‌روزرسانی تیکت‌ها، و اندپوینت‌های گزارش‌گیری برای معیارهای تیم پشتیبانی.">Notifications on ticket updates, and reporting endpoints for support-team metrics.</li>
-      <li data-en="SLA-based escalation: unanswered tickets past a threshold are automatically flagged and escalated." data-fa="اسکالیشن مبتنی بر SLA: تیکت‌های بی‌پاسخ بعد از یه آستانه مشخص، خودکار پرچم‌گذاری و اسکاله می‌شن.">SLA-based escalation: unanswered tickets past a threshold are automatically flagged and escalated.</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2 data-en="My role" data-fa="نقش من">My role</h2>
-    <p style="font-size:14.5px; color:var(--muted);" data-en="Built as a two-person team where both of us worked on the backend. The project was mine to run: I managed branches and pull requests, did code review, defined the issues and tasks, and divided the work between us — taking on the larger share myself." data-fa="به‌صورت تیم دو نفره ساخته شد که هر دومون روی بک‌اند کار می‌کردیم. مدیریت پروژه با من بود: برنچ‌ها و پول‌ریکوئست‌ها رو مدیریت می‌کردم، کدریویو انجام می‌دادم، ایشو و تسک‌ها رو تعریف می‌کردم و کار رو بین‌مون تقسیم می‌کردم — با سهم بیشتر برای خودم.">Built as a two-person team where both of us worked on the backend. The project was mine to run: I managed branches and pull requests, did code review, defined the issues and tasks, and divided the work between us — taking on the larger share myself.</p>
-  </section>
-
-  <section>
-    <h2 data-en="Escalation logic" data-fa="منطق اسکالیشن">Escalation logic</h2>
-    <div class="note-box">
-      <span data-en="A scheduled job periodically checks open tickets against their SLA threshold. Any ticket left unanswered past that window gets flagged and routed to a higher support tier — instead of relying on agents to notice a stale ticket manually." data-fa="یه جاب زمان‌بندی‌شده به‌صورت دوره‌ای تیکت‌های باز رو در مقابل آستانه SLA بررسی می‌کنه. هر تیکتی که بعد از اون بازه بی‌پاسخ بمونه، پرچم‌گذاری و به یه سطح بالاتر پشتیبانی مسیردهی می‌شه — به‌جای اینکه پشتیبان‌ها به‌صورت دستی متوجه یه تیکت قدیمی بشن.">A scheduled job periodically checks open tickets against their SLA threshold. Any ticket left unanswered past that window gets flagged and routed to a higher support tier — instead of relying on agents to notice a stale ticket manually.</span>
+  <!-- HERO -->
+  <section class="pkg-hero">
+    <span class="badge"><span class="dot" style="background:var(--accent-2)"></span><span data-en="Team project" data-fa="پروژه تیمی">Team project</span></span>
+    <h1>ticketFlow</h1>
+    <p class="pkg-tagline" data-en="An open-source Laravel REST API ticketing and support system — auth, roles and permissions, ticket management, notifications, reports, and SLA-based escalation for unanswered tickets." data-fa="یه سیستم تیکتینگ و پشتیبانی متن‌باز به‌صورت ری‌است‌ای‌پی‌آی با لاراول — احراز هویت، نقش و دسترسی، مدیریت تیکت، اعلان‌ها، گزارش‌ها، و اسکالیشن مبتنی بر SLA برای تیکت‌های بی‌پاسخ.">An open-source Laravel REST API ticketing and support system — auth, roles and permissions, ticket management, notifications, reports, and SLA-based escalation for unanswered tickets.</p>
+    <div class="btn-row">
+      <a class="btn primary" href="https://github.com/milirezai/ticketFlow" target="_blank" rel="noopener">
+        <svg class="icon" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        <span data-en="View on GitHub" data-fa="مشاهده در گیت‌هاب">View on GitHub</span>
+      </a>
     </div>
   </section>
+
+  <!-- OVERVIEW -->
+  <section class="reveal">
+    <p class="section-tag mono">01</p>
+    <h2 data-en="Overview" data-fa="نمای کلی">Overview</h2>
+    <div class="prose-card card">
+      <div class="prose">
+        <p data-en="ticketFlow is a full support-ticketing backend built with Laravel, exposed as a REST API. It handles authentication, role-based permissions, ticket lifecycle management, notifications, and reporting — with an SLA-based escalation system that flags tickets left unanswered too long." data-fa="ticketFlow یه بک‌اند کامل تیکتینگ و پشتیبانیه که با لاراول ساخته شده و به‌صورت ری‌است‌ای‌پی‌آی ارائه می‌شه. احراز هویت، دسترسی مبتنی بر نقش، مدیریت چرخه عمر تیکت، اعلان‌ها و گزارش‌گیری رو پوشش می‌ده — همراه با سیستم اسکالیشن مبتنی بر SLA که تیکت‌های بی‌پاسخ‌مانده رو پرچم‌گذاری می‌کنه.">ticketFlow is a full support-ticketing backend built with Laravel, exposed as a REST API. It handles authentication, role-based permissions, ticket lifecycle management, notifications, and reporting — with an SLA-based escalation system that flags tickets left unanswered too long.</p>
+        <p data-en="It's a two-person team project. I managed branches and pull requests, ran code review, and divided tasks between myself and my teammate." data-fa="این یه پروژه دونفره‌ست. من مدیریت برنچ‌ها و پول‌ریکوئست‌ها، بررسی کد، و تقسیم وظایف بین خودم و هم‌تیمیم رو انجام دادم.">It's a two-person team project. I managed branches and pull requests, ran code review, and divided tasks between myself and my teammate.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="reveal">
+    <p class="section-tag mono">02</p>
+    <h2 data-en="Features" data-fa="امکانات">Features</h2>
+    <div class="feature-list">
+      <div class="feature card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V8a5 5 0 0 1 10 0v3"/></svg>
+        <div>
+          <h3 data-en="Auth, roles & permissions" data-fa="احراز هویت، نقش و دسترسی">Auth, roles & permissions</h3>
+          <p data-en="Token-based authentication with fine-grained role and permission checks on every endpoint." data-fa="احراز هویت مبتنی بر توکن با بررسی دقیق نقش و دسترسی روی هر اندپوینت.">Token-based authentication with fine-grained role and permission checks on every endpoint.</p>
+        </div>
+      </div>
+      <div class="feature card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h10M7 13h6"/></svg>
+        <div>
+          <h3 data-en="Ticket lifecycle management" data-fa="مدیریت چرخه عمر تیکت">Ticket lifecycle management</h3>
+          <p data-en="Create, assign, status-track, and resolve tickets through a clean REST interface." data-fa="ایجاد، تخصیص، پیگیری وضعیت و بستن تیکت از طریق یه اینترفیس ری‌است‌ای‌پی‌آی تمیز.">Create, assign, status-track, and resolve tickets through a clean REST interface.</p>
+        </div>
+      </div>
+      <div class="feature card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21z"/><path d="M9 10l2 2 4-4"/></svg>
+        <div>
+          <h3 data-en="SLA-based escalation" data-fa="اسکالیشن مبتنی بر SLA">SLA-based escalation</h3>
+          <p data-en="Tickets left unanswered past a threshold are automatically flagged and escalated." data-fa="تیکت‌هایی که از یه آستانه مشخص بی‌پاسخ بمونن، به‌صورت خودکار پرچم‌گذاری و اسکالیت می‌شن.">Tickets left unanswered past a threshold are automatically flagged and escalated.</p>
+        </div>
+      </div>
+      <div class="feature card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a3 3 0 1 0-2.83-4H8.83A3 3 0 1 0 6 8c0 .35.06.68.17 1L6 13a3 3 0 1 0 2.83 4h6.34A3 3 0 1 0 18 13l-.17-4c.11-.32.17-.65.17-1z"/></svg>
+        <div>
+          <h3 data-en="Notifications & reports" data-fa="اعلان‌ها و گزارش‌ها">Notifications & reports</h3>
+          <p data-en="Automated notifications on ticket events, plus reporting endpoints for support-team metrics." data-fa="اعلان‌های خودکار روی رویدادهای تیکت، به‌همراه اندپوینت‌های گزارش‌گیری برای متریک‌های تیم پشتیبانی.">Automated notifications on ticket events, plus reporting endpoints for support-team metrics.</p>
+        </div>
+      </div>
+    </div>
+    <div class="pill-row">
+      <span class="pill">Laravel</span><span class="pill">MySQL</span><span class="pill">REST API</span><span class="pill">RBAC</span>
+    </div>
+  </section>
+
+  <!-- PACKAGE STATS -->
+  <section class="reveal">
+    <p class="section-tag mono">03</p>
+    <h2 data-en="Package stats" data-fa="آمار پکیج">Package stats</h2>
+    <div class="autoscroll-row" id="pkg-stats-row">
+      <div class="tile card" style="text-align:center; width: 150px; margin-left: 10px;">
+        <svg class="tile-icon" style="margin:0 auto 8px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17.3l-6.2 3.6 1.6-7L2 9.2l7.1-.6L12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7z"/></svg>
+        <span class="num mono" data-field="stars" style="font-size:19px;">–</span><span class="label" data-en="stars" data-fa="استار">stars</span>
+      </div>
+      <div class="tile card" style="text-align:center;width: 150px;">
+        <svg class="tile-icon" style="margin:0 auto 8px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.4"/><circle cx="18" cy="6" r="2.4"/><circle cx="6" cy="18" r="2.4"/><path d="M6 8.4V15a3 3 0 0 0 3 3h6.5"/><path d="M18 8.4v2.6"/></svg>
+        <span class="num mono" data-field="forks" style="font-size:19px;">–</span><span class="label" data-en="forks" data-fa="فورک">forks</span>
+      </div>
+      <div class="tile card" style="text-align:center;width: 150px;">
+        <svg class="tile-icon" style="margin:0 auto 8px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
+        <span class="num mono" data-field="issues" style="font-size:19px;">–</span><span class="label" data-en="open issues" data-fa="ایشوی باز">open issues</span>
+      </div>
+      <div class="tile card" style="text-align:center;width: 150px;">
+        <svg class="tile-icon" style="margin:0 auto 8px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 9.5h18"/><path d="M8 3v3M16 3v3"/></svg>
+        <span class="num mono" data-field="updated" style="font-size:15px;">–</span><span class="label" data-en="last updated" data-fa="آخرین آپدیت">last updated</span>
+      </div>
+    </div>
+    <p class="scroll-hint mono">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/><path d="M11 18l-6-6 6-6"/></svg>
+      <span data-en="Drag to see more" data-fa="برای دیدن بیشتر بکش">Drag to see more</span>
+    </p>
+    <p class="gh-note" id="pkg-stats-note" data-en="Pulled live from the GitHub API." data-fa="به‌صورت زنده از GitHub API خونده می‌شه.">Pulled live from the GitHub API.</p>
+  </section>
+
+  <footer>© <span id="year"></span> Milad Rezai — <a href="index.html" data-en="back to portfolio" data-fa="بازگشت به صفحه اصلی">back to portfolio</a></footer>
 </div>
 
-
-
-<script src="js/work-ticketflow.js"></script>
+<script src="js/work.js"></script>
+<script>initPackageStats('ticketFlow');</script>
 </body>
 </html>
